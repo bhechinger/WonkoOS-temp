@@ -1,30 +1,30 @@
 { config, lib, pkgs, ... }:
 
 {
-  fileSystems."/" =
-    { device = "rpool/root";
-      fsType = "zfs";
-    };
+  fileSystems."/" = {
+    device = "rpool/root";
+    fsType = "zfs";
+  };
 
-  fileSystems."/nix" =
-    { device = "rpool/nix";
-      fsType = "zfs";
-    };
+  fileSystems."/nix" = {
+    device = "rpool/nix";
+    fsType = "zfs";
+  };
 
-  fileSystems."/var" =
-    { device = "rpool/var";
-      fsType = "zfs";
-    };
+  fileSystems."/var" = {
+    device = "rpool/var";
+    fsType = "zfs";
+  };
 
-  fileSystems."/home" =
-    { device = "zpool/home";
-      fsType = "zfs";
-    };
+  fileSystems."/home" = {
+    device = "zpool/home";
+    fsType = "zfs";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/FC5B-6502";
-      fsType = "vfat";
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/FC5B-6502";
+    fsType = "vfat";
+  };
 
   swapDevices = [ ];
 
