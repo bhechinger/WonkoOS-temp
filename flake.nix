@@ -4,9 +4,10 @@
 
   inputs = {
     nixpkgs = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
+    musnix  = { url = "github:musnix/musnix"; };
   };
 
-  outputs = { self, nixpkgs }: 
+  outputs = { self, nixpkgs, musnix }:
     let
       system = "x86_64-linux";
 
@@ -23,7 +24,7 @@
 	  inherit system;
 
           modules = [
-	    #inputs.musnix.nixosModules.musnix
+	        musnix.nixosModules.musnix
             ./systems/deepthought.nix
           ];
         };

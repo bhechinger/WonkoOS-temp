@@ -11,8 +11,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware/deepthought.nix
-      ../common/nix-alien.nix
-      <musnix>
+#      ../common/nix-alien.nix
     ];
 
   boot = {
