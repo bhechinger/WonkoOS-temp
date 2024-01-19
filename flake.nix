@@ -7,13 +7,13 @@
     musnix  = { url = "github:musnix/musnix"; };
   };
 
-  outputs = { self, nixpkgs, musnix }:
+  outputs = { self, nixpkgs, musnix, ... }:
     let
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
         inherit system;
-	config = { allowUnfree = true; };
+	    config = { allowUnfree = true; };
       };
 
       lib = nixpkgs.lib;
@@ -21,13 +21,13 @@
     {
       nixosConfigurations = {
         deepthought = nixpkgs.lib.nixosSystem {
-	  inherit system;
+	    inherit system;
 
-          modules = [
-	        musnix.nixosModules.musnix
-            ./systems/deepthought.nix
-          ];
-        };
+        modules = [
+	      musnix.nixosModules.musnix
+          ./systems/deepthought/default.nix
+        ];
       };
     };
+  };
 }
