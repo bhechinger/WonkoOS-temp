@@ -341,6 +341,7 @@
     xorg.xkill
     virtiofsd
     ripgrep
+    grapejuice
   ];
 
   programs = {
