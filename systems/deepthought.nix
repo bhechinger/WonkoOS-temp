@@ -118,6 +118,7 @@
     extraHosts = ''
       192.168.99.30 basket.4amlunch.net basket
     '';
+    firewall.enable = false;
   };
 
   time.timeZone = "Europe/Lisbon";
@@ -341,6 +342,7 @@
     xorg.xkill
     virtiofsd
     ripgrep
+    heroic
     grapejuice
   ];
 
