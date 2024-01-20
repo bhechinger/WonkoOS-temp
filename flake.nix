@@ -1,13 +1,12 @@
-# /etc/nixos/flake.nix
 {
   description = "flake for 4amlunch.net hosts";
 
   inputs = {
-    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
-    musnix  = { url = "github:musnix/musnix"; };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    musnix.url = "github:musnix/musnix";
   };
 
-  outputs = { self, nixpkgs, musnix }:
+  outputs = { self, nixpkgs, musnix, ... }:
     let
       system = "x86_64-linux";
 
@@ -22,9 +21,8 @@
       nixosConfigurations = {
         deepthought = nixpkgs.lib.nixosSystem {
 	  inherit system;
-
           modules = [
-	        musnix.nixosModules.musnix
+            musnix.nixosModules.musnix
             ./systems/deepthought.nix
           ];
         };

@@ -1,11 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   nix = {
     package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
+    settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
   imports =
@@ -252,6 +250,7 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
     util-linux
     rustup
@@ -344,6 +343,9 @@
     ripgrep
     heroic
     grapejuice
+    python3
+    gdb
+    lldb
   ];
 
   programs = {
