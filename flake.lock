@@ -34,13 +34,29 @@
         "type": "github"
       }
     },
+    "nixpkgs-brian": {
+      "locked": {
+        "lastModified": 1706087258,
+        "narHash": "sha256-/Ws2xC6wgoEt0O3PtdTgcgRV/Vt25vOGYd0gTS0TA30=",
+        "owner": "bhechinger",
+        "repo": "nixpkgs",
+        "rev": "046bdd80e1263e3efc89c98ab691be69c8fa5cd3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bhechinger",
+        "ref": "update-stuff",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1705496572,
-        "narHash": "sha256-rPIe9G5EBLXdBdn9ilGc0nq082lzQd0xGGe092R/5QE=",
+        "lastModified": 1705856552,
+        "narHash": "sha256-JXfnuEf5Yd6bhMs/uvM67/joxYKoysyE3M2k6T3eWbg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "842d9d80cfd4560648c785f8a4e6f3b096790e19",
+        "rev": "612f97239e2cc474c13c9dafa0df378058c5ad8d",
         "type": "github"
       },
       "original": {
@@ -50,10 +66,46 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1705856552,
+        "narHash": "sha256-JXfnuEf5Yd6bhMs/uvM67/joxYKoysyE3M2k6T3eWbg=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "612f97239e2cc474c13c9dafa0df378058c5ad8d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "musnix": "musnix",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "nixpkgs-brian": "nixpkgs-brian",
+        "smc": "smc"
+      }
+    },
+    "smc": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1706094548,
+        "narHash": "sha256-XaAVFzgNWE1cQbb+ghuMYe82a8b4BIaAP8fA+gGSDH4=",
+        "owner": "bhechinger",
+        "repo": "spotify-midi-control",
+        "rev": "18eec240984a0802e926c5db61a12e309d8b43bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "bhechinger",
+        "repo": "spotify-midi-control",
+        "type": "github"
       }
     }
   },
