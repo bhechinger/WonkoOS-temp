@@ -3,10 +3,12 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-brian.url = "github:bhechinger/nixpkgs/update-stuff";
     musnix.url = "github:musnix/musnix";
+    smc.url = "github:bhechinger/spotify-midi-control";
   };
 
-  outputs = { self, nixpkgs, musnix, ... }:
+  outputs = { self, nixpkgs, nixpkgs-brian, musnix, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -21,6 +23,15 @@
       nixosConfigurations = {
         deepthought = nixpkgs.lib.nixosSystem {
 	  inherit system;
+	  specialArgs = {
+	    pkgs-brian = import nixpkgs-brian {
+	      system = system;
+	      config.allowUnfree = true;
+	    };
+
+	    inherit inputs;
+	  };
+
           modules = [
             musnix.nixosModules.musnix
             ./systems/deepthought.nix

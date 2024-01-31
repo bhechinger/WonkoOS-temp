@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, pkgs-brian, ... }:
 
 {
   nix = {
@@ -10,6 +10,7 @@
     [ # Include the results of the hardware scan.
       ./hardware/deepthought.nix
 #      ../common/nix-alien.nix
+      ./grafana.nix
     ];
 
   boot = {
@@ -156,11 +157,18 @@
   security.rtkit.enable = true;
 
   services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      nssmdns6 = true;
+    };
+
     pipewire = {
       enable = true;
       audio.enable = true;
       wireplumber = {
         enable = true;
+	package = pkgs-brian.wireplumber;
       };
       alsa.enable = true;
       alsa.support32Bit = true;
@@ -178,7 +186,12 @@
       desktopManager.plasma5.enable = true;
     };
 
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [
+        pkgs.hplipWithPlugin
+      ];
+    };
     openssh.enable = true;
     rpcbind.enable = true; # needed for NFS
 
@@ -208,6 +221,10 @@
 
     openvpn.servers = {
       nitradoVPN = { config = '' config /home/wonko/projects/Nitrado/vpn/client.conf ''; };
+      vyprVPN-Miami = {
+        config = '' config /home/wonko/.openvpn/vyprvpn/OpenVPN256/USA-Miami.ovpn '';
+        autoStart = false;
+      };
     };
 
     zfs = {
@@ -228,7 +245,6 @@
       nameList = "rtc0 firewire_ohci";
     };
   };
-  
 
   users.users.wonko = {
     isNormalUser = true;
@@ -241,19 +257,18 @@
       "users"
       "docker"
       "kvm"
-      "wireshark"
+      "wiresharkre"
       "onepassword"
       "onepassword-cli"
       "qemu-libvirtd"
     ];
   };
-
+  
   nixpkgs.config.allowUnfree = true;
 
   environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
     util-linux
-    rustup
     kate
     jetbrains.goland
     jetbrains.idea-ultimate
@@ -273,10 +288,11 @@
     signal-desktop
     gh
     glab
-    element-desktop
+    fractal
     skypeforlinux
     kubernetes-helm
     kubectl
+    krew
     kubectx
     usbutils
     lshw
@@ -346,6 +362,19 @@
     python3
     gdb
     lldb
+    iamb
+    irssi
+    nix-prefetch-git
+    nix-prefetch-github
+    inputs.smc.packages.x86_64-linux.default
+    gnumake
+    xsel
+    xclip
+    vimPlugins.lazy-nvim
+    unzip
+    tree-sitter
+    gcc
+    mailspring
   ];
 
   programs = {
@@ -359,13 +388,15 @@
     htop.enable = true;
     iotop.enable = true;
     less.enable = true;
-    neovim.enable = true;
     openvpn3.enable = true;
     starship.enable = true;
     steam.enable = true;
     traceroute.enable = true;
     usbtop.enable = true;
-    wireshark.enable = true;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
     atop.enable = true;
     calls.enable = true;
     chromium.enable = true;
@@ -378,6 +409,23 @@
     dconf.enable = true; # virt-manager requires dconf to remember settings
     virt-manager.enable = true;
 
+    nix-ld = {
+      enable = true;
+    };
+
+    neovim = {
+      enable = true;
+      defaultEditor = true;
+      vimAlias = true;
+      viAlias = true;
+      #configure = {
+      #  customRC = ''
+      #    set clipboard+=unnamed
+      #    set clipboard+=unnamedplus
+      #  '';
+      #};
+    };
+
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
@@ -385,9 +433,6 @@
 
     zsh = {
       enable = true;
-      shellAliases = {
-        vi = "nvim";
-      };
     };
   };
 

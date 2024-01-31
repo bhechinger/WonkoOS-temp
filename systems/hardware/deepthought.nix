@@ -8,10 +8,19 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "firewire_ohci" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot = {
+    initrd = {
+      availableKernelModules = [ "nvme" "firewire_ohci" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ ];
+    };
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
+    kernel.sysctl = {
+      "fs.inotify.max_user_watches" = 524288; # default: 8192
+      "fs.inotify.max_user_instances" = 256; # default: 128
+      "fs.inotify.max_queued_events" = 32768; # default: 16384
+    };
+  };
 
 #  fileSystems."/" =
 #    { device = "rpool/root";
