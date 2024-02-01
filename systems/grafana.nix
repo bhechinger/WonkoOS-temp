@@ -1,27 +1,81 @@
+{ config, pkgs, ... }:
+
 {
-  services.grafana = {
-    enable = true;
-    settings = {
-      server = {
-        # Listening Address
-        http_addr = "127.0.0.1";
-        # and Port
-        http_port = 3000;
-        # Grafana needs to know on which domain and URL it's running
-        domain = "4amlunch.net";
-        root_url = "https://4amlunch.net/grafana/"; # Not needed if it is `https://your.domain/`
-        serve_from_sub_path = true;
+  services = {
+    grafana = {
+      enable = true;
+      settings = {
+        server = {
+          # Listening Address
+          http_addr = "127.0.0.1";
+          # and Port
+          http_port = 3000;
+          # Grafana needs to know on which domain and URL it's running
+          domain = "deepthought.4amlunch.net";
+          root_url = "http://deepthought.4amlunch.net/grafana/"; # Not needed if it is `https://your.domain/`
+          serve_from_sub_path = true;
+        };
       };
     };
+
+    nginx = {
+      enable = true;
+      virtualHosts."deepthought.4amlunch.net" = {
+#        addSSL = true;
+#        enableACME = true;
+        locations."/grafana/" = {
+            proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
+            proxyWebsockets = true;
+            recommendedProxySettings = true;
+        };
+      };
+    };
+
+    prometheus = {
+      enable = true;
+      exporters = {
+        node = {
+          enable = true;
+          enabledCollectors = [ "systemd" ];
+        };
+        zfs = {
+          enable = true;
+          pools = [
+            "rpool"
+            "zpool"
+          ];
+        };
+        #unifi = {
+        #  enable = true;
+        #  unifiUsername = "wonko";
+        #  unifiPassword = "password";
+        #  unifiAddress = "https://10.42.0.2:8443";
+        #};
+      };
+      scrapeConfigs = [
+        {
+          job_name = "deepthought";
+          static_configs = [{
+            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+          }];
+        }
+      ];
+    };
+
+    loki = {
+      enable = true;
+      configFile = ./loki-config.json;
+    };
   };
-  
-  services.nginx.virtualHosts."4amlunch.net" = {
-    addSSL = true;
-    enableACME = true;
-    locations."/grafana/" = {
-        proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
-        proxyWebsockets = true;
-        recommendedProxySettings = true;
+
+  systemd.services.promtail = {
+    description = "Promtail service for Loki";
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      ExecStart = ''
+        ${pkgs.grafana-loki}/bin/promtail --config.file ${./promtail.yaml}
+      '';
     };
   };
 }
