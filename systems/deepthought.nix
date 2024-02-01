@@ -9,8 +9,9 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware/deepthought.nix
-#      ../common/nix-alien.nix
+      ./development.nix
       ./grafana.nix
+#      ../common/nix-alien.nix
     ];
 
   boot = {
@@ -157,6 +158,12 @@
   security.rtkit.enable = true;
 
   services = {
+    zerotierone = {
+      enable = true;
+      joinNetworks = [
+        "a84ac5c10a853bc1"
+      ];
+    };
     avahi = {
       enable = true;
       nssmdns4 = true;
@@ -270,13 +277,6 @@
   environment.systemPackages = with pkgs; [
     util-linux
     kate
-    jetbrains.goland
-    jetbrains.idea-ultimate
-    jetbrains.gateway
-    jetbrains.datagrip
-    jetbrains.clion
-    jetbrains.rust-rover
-    fira-code
     libsForQt5.kcalc
     ffado
     alsa-utils
@@ -286,21 +286,13 @@
     franz
     whatsapp-for-linux
     signal-desktop
-    gh
-    glab
     fractal
     skypeforlinux
-    kubernetes-helm
-    kubectl
-    krew
-    kubectx
     usbutils
     lshw
-    kustomize
     postgresql_15
     spaceship-prompt
     jotta-cli
-    awscli2
     libreoffice
     dropbox
     dropbox-cli
@@ -349,8 +341,6 @@
     gnuplot
     audacious
     qpwgraph
-    awscli
-    google-cloud-sdk
     file
     lutris
     wineWow64Packages.stagingFull
@@ -359,9 +349,6 @@
     ripgrep
     heroic
     grapejuice
-    python3
-    gdb
-    lldb
     iamb
     irssi
     nix-prefetch-git
@@ -373,8 +360,8 @@
     vimPlugins.lazy-nvim
     unzip
     tree-sitter
-    gcc
     mailspring
+    rsync
   ];
 
   programs = {
