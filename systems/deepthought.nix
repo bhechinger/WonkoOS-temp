@@ -19,6 +19,8 @@
     loader.efi.canTouchEfiVariables = true;
     supportedFilesystems = [ "nfs" ];
     kernelParams = [ "mitigations=off" ];
+    #kernelPackages = pkgs-brian.linuxKernel.packages.linux_zen_6_6;
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
   };
 
   fileSystems."/" =
@@ -46,6 +48,7 @@
       fsType = "vfat";
     };
 
+  #swapDevices = [ "/dev/zvol/rpool/swap1" ];
   swapDevices = [ ];
 
   # NFS mounts
@@ -75,6 +78,10 @@
     })
   ];
 
+  security.pam.loginLimits = [
+    { domain = "wonko"; item = "nofile"; type = "hard"; value = "524288"; }
+  ];
+
   systemd.automounts = let commonAutoMountOptions = {
     wantedBy = [ "multi-user.target" ];
     automountConfig = {
@@ -94,16 +101,21 @@
     hostName = "deepthought";
     hostId = "39aa81bf";
     domain = "4amlunch.net";
-    dhcpcd.enable = false;
+    useDHCP = false;
     bridges = {
       "internal" = {
         interfaces = [ "vlan420" ];
       };
+      "external" = {
+        interfaces = [ "vlan100" ];
+      };
     };
     vlans = {
       vlan420 = { id=420; interface="enp10s0"; };
+      vlan100 = { id=100; interface="enp10s0"; };
     };
     interfaces = {
+      external.useDHCP = true;
       internal.ipv4.addresses = [{
         address = "10.42.0.10";
         prefixLength = 24;
@@ -113,7 +125,7 @@
         prefixLength = 24;
       }];
     };
-    defaultGateway = "10.42.0.1";
+    #defaultGateway = "10.42.0.1";
     nameservers = [ "10.42.0.2" "10.42.0.12" ];
     extraHosts = ''
       192.168.99.30 basket.4amlunch.net basket
@@ -186,8 +198,7 @@
 
     xserver = {
       enable = true;
-      layout = "us";
-      xkbVariant = "";
+      xkb.layout = "us";
       videoDrivers = ["nvidia"];
       displayManager.sddm.enable = true;
       desktopManager.plasma5.enable = true;
@@ -227,7 +238,7 @@
     spice-vdagentd.enable = true;
 
     openvpn.servers = {
-      nitradoVPN = { config = '' config /home/wonko/projects/Nitrado/vpn/client.conf ''; };
+      #nitradoVPN = { config = '' config /home/wonko/projects/Nitrado/vpn/client.conf ''; };
       vyprVPN-Miami = {
         config = '' config /home/wonko/.openvpn/vyprvpn/OpenVPN256/USA-Miami.ovpn '';
         autoStart = false;
@@ -244,7 +255,11 @@
     enable = true;
     ffado.enable = true;
     soundcardPciId = "08:00.0";
-    kernel.realtime = true;
+    #kernel = {
+    #    realtime = true;
+    #    packages = pkgs.linuxPackages_latest_rt;
+    #    #packages = pkgs.linuxPackages_6_7_rt;
+    #};
     rtirq = {
       resetAll = 1;
       prioLow = 0;
@@ -275,6 +290,15 @@
 
   environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
+    glances
+    zenmonitor
+    nixfmt
+    davinci-resolve
+    ffmpeg_5-full
+    stress
+    stress-ng
+    firestarter
+    gpu-burn
     util-linux
     kate
     libsForQt5.kcalc
@@ -384,7 +408,7 @@
       enable = true;
       package = pkgs.wireshark;
     };
-    atop.enable = true;
+    #atop.enable = true;
     calls.enable = true;
     chromium.enable = true;
     feedbackd.enable = true;

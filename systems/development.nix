@@ -24,5 +24,6 @@
     minikube
     kubernetes-helm
     cilium-cli
+    cmake
   ];
 }
