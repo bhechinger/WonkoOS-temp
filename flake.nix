@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-brian.url = "github:bhechinger/nixpkgs/update-stuff";
-    musnix.url = "github:musnix/musnix";
+    musnix.url = "github:bhechinger/musnix?ref=zen-kernel";
     smc.url = "github:bhechinger/spotify-midi-control";
   };
 
@@ -14,7 +14,7 @@
 
       pkgs = import nixpkgs {
         inherit system;
-	config = { allowUnfree = true; };
+        config = { allowUnfree = true; };
       };
 
       lib = nixpkgs.lib;

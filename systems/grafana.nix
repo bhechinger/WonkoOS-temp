@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  #environment.systemPackages = with pkgs; [
+  #  prometheus-dcgm-exporter
+  #];
+
   services = {
     grafana = {
       enable = true;
@@ -44,6 +48,27 @@
             "rpool"
             "zpool"
           ];
+        };
+        systemd = {
+          enable = true;
+        };
+        smokeping = {
+          enable = true;
+          hosts = [
+            "8.8.8.8"
+            "10.42.0.1"
+            "192.168.99.30"
+          ];
+        };
+        smartctl = {
+          enable = true;
+          devices = [
+            "/dev/nvme0n1"
+            "/dev/nvme1n1"
+          ];
+        };
+        nginx = {
+          enable = true;
         };
         #unifi = {
         #  enable = true;
