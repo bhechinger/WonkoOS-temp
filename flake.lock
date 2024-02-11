@@ -37,11 +37,11 @@
     },
     "nixpkgs-brian": {
       "locked": {
-        "lastModified": 1707488855,
-        "narHash": "sha256-QMaR67i9muSQZZLuYqKhZ9IWhFgWCKRnMxiOKQzYKyg=",
+        "lastModified": 1707504399,
+        "narHash": "sha256-bbxE9a96RiEBRDLrkU2dm8u1AwOfNxwh/PylsBWsK30=",
         "owner": "bhechinger",
         "repo": "nixpkgs",
-        "rev": "b0c4b4f1dbbe7a87e5877cc3897cc871ede9b20f",
+        "rev": "e15d482260a4f21c560be84ff031afcee1eddfb1",
         "type": "github"
       },
       "original": {
