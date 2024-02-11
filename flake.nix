@@ -34,7 +34,7 @@
 
           modules = [
             musnix.nixosModules.musnix
-            ./systems/deepthought.nix
+            ./systems/deepthought/default.nix
           ];
         };
       };

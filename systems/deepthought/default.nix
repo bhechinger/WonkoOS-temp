@@ -8,7 +8,7 @@
 
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware/deepthought.nix
+      ../hardware/deepthought.nix
       ./development.nix
       ./grafana.nix
 #      ../common/nix-alien.nix
@@ -19,8 +19,10 @@
     loader.efi.canTouchEfiVariables = true;
     supportedFilesystems = [ "nfs" ];
     kernelParams = [ "mitigations=off" ];
+    #kernelParams = [ "mitigations=off" "preempt=full" ];
     #kernelPackages = pkgs-brian.linuxKernel.packages.linux_zen_6_6;
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_stable;
+    #kernelPackages = pkgs-brian.linuxKernel.packages.linux_xanmod_rt;
+    #extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
   };
 
   fileSystems."/" =
@@ -187,7 +189,7 @@
       audio.enable = true;
       wireplumber = {
         enable = true;
-	package = pkgs-brian.wireplumber;
+        package = pkgs-brian.wireplumber;
       };
       alsa.enable = true;
       alsa.support32Bit = true;
@@ -255,11 +257,11 @@
     enable = true;
     ffado.enable = true;
     soundcardPciId = "08:00.0";
-    #kernel = {
-    #    realtime = true;
-    #    packages = pkgs.linuxPackages_latest_rt;
-    #    #packages = pkgs.linuxPackages_6_7_rt;
-    #};
+    kernel = {
+        realtime = true;
+        packages = pkgs.linuxPackages_latest_rt;
+        #packages = pkgs.linuxPackages_6_7_rt;
+    };
     rtirq = {
       resetAll = 1;
       prioLow = 0;
@@ -290,6 +292,7 @@
 
   environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
+    linuxKernel.packages.linux_xanmod_stable.zenpower
     glances
     zenmonitor
     nixfmt
