@@ -37,11 +37,11 @@
     },
     "nixpkgs-brian": {
       "locked": {
-        "lastModified": 1707504399,
-        "narHash": "sha256-bbxE9a96RiEBRDLrkU2dm8u1AwOfNxwh/PylsBWsK30=",
+        "lastModified": 1707989696,
+        "narHash": "sha256-bQoOlaawSpyKGF4awfDq4RIn2VUTDCpY/E8Ub1aflAI=",
         "owner": "bhechinger",
         "repo": "nixpkgs",
-        "rev": "e15d482260a4f21c560be84ff031afcee1eddfb1",
+        "rev": "95b862d406939546e9522171c797bf6a530b19c1",
         "type": "github"
       },
       "original": {
@@ -53,11 +53,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1707268954,
-        "narHash": "sha256-2en1kvde3cJVc3ZnTy8QeD2oKcseLFjYPLKhIGDanQ0=",
+        "lastModified": 1707863367,
+        "narHash": "sha256-LdBbCSSP7VHaHA4KXcPGKqkvsowT2+7W4jlEHJj6rPg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f8e2ebd66d097614d51a56a755450d4ae1632df1",
+        "rev": "35ff7e87ee05199a8003f438ec11a174bcbd98ea",
         "type": "github"
       },
       "original": {
@@ -96,11 +96,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1706094548,
-        "narHash": "sha256-XaAVFzgNWE1cQbb+ghuMYe82a8b4BIaAP8fA+gGSDH4=",
+        "lastModified": 1707995662,
+        "narHash": "sha256-xnfCMY5iofIsLjsteInSNmcJxfUaFz9BoxFNQjce3EU=",
         "owner": "bhechinger",
         "repo": "spotify-midi-control",
-        "rev": "18eec240984a0802e926c5db61a12e309d8b43bb",
+        "rev": "19adac8ee415f5612a3158588939c2dba7299bbe",
         "type": "github"
       },
       "original": {

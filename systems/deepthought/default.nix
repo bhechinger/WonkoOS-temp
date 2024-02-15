@@ -1,4 +1,5 @@
-{ inputs, config, lib, pkgs, pkgs-brian, ... }:
+#
+{ inputs, config, lib, pkgs, pkgs-brian, smc, ... }:
 
 {
   nix = {
@@ -19,10 +20,6 @@
     loader.efi.canTouchEfiVariables = true;
     supportedFilesystems = [ "nfs" ];
     kernelParams = [ "mitigations=off" ];
-    #kernelParams = [ "mitigations=off" "preempt=full" ];
-    #kernelPackages = pkgs-brian.linuxKernel.packages.linux_zen_6_6;
-    #kernelPackages = pkgs-brian.linuxKernel.packages.linux_xanmod_rt;
-    #extraModulePackages = with config.boot.kernelPackages; [ zenpower ];
   };
 
   fileSystems."/" =
@@ -380,7 +377,7 @@
     irssi
     nix-prefetch-git
     nix-prefetch-github
-    inputs.smc.packages.x86_64-linux.default
+    smc.packages.x86_64-linux.default
     gnumake
     xsel
     xclip
@@ -413,7 +410,10 @@
     };
     #atop.enable = true;
     calls.enable = true;
-    chromium.enable = true;
+    #chromium = {
+    #  enable = true;
+    #  plasmaBrowserIntegrationPackage = pkgs.libsForQt5.plasma-browser-integration;
+    #};
     feedbackd.enable = true;
     gamemode.enable = true;
     iftop.enable = true;

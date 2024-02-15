@@ -8,7 +8,7 @@
     smc.url = "github:bhechinger/spotify-midi-control";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-brian, musnix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-brian, smc, musnix, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -28,6 +28,8 @@
 	      system = system;
 	      config.allowUnfree = true;
 	    };
+
+        smc = import smc {};
 
 	    inherit inputs;
 	  };
