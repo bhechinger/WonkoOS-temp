@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  #environment.systemPackages = with pkgs; [
-  #  prometheus-dcgm-exporter
-  #];
+  environment.systemPackages = with pkgs; [
+    #prometheus-dcgm-exporter
+    promql-cli
+  ];
 
   services = {
     grafana = {
@@ -37,6 +38,7 @@
 
     prometheus = {
       enable = true;
+      globalConfig.scrape_interval = "15s";
       exporters = {
         node = {
           enable = true;
@@ -81,7 +83,10 @@
         {
           job_name = "deepthought";
           static_configs = [{
-            targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.node.port}" ];
+            targets = [
+              "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
+              "127.0.0.1:9835"
+            ];
           }];
         }
       ];
