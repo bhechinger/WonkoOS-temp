@@ -124,7 +124,7 @@
         prefixLength = 24;
       }];
     };
-    #defaultGateway = "10.42.0.1";
+    defaultGateway = "10.42.0.1";
     nameservers = [ "10.42.0.2" "10.42.0.12" ];
     extraHosts = ''
       192.168.99.30 basket.4amlunch.net basket
@@ -377,7 +377,7 @@
     irssi
     nix-prefetch-git
     nix-prefetch-github
-    smc.packages.x86_64-linux.default
+    #smc.packages.x86_64-linux.default { lib = lib; }
     gnumake
     xsel
     xclip
