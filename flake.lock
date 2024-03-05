@@ -53,11 +53,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1707863367,
-        "narHash": "sha256-LdBbCSSP7VHaHA4KXcPGKqkvsowT2+7W4jlEHJj6rPg=",
+        "lastModified": 1709237383,
+        "narHash": "sha256-cy6ArO4k5qTx+l5o+0mL9f5fa86tYUX3ozE1S+Txlds=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "35ff7e87ee05199a8003f438ec11a174bcbd98ea",
+        "rev": "1536926ef5621b09bba54035ae2bb6d806d72ac8",
         "type": "github"
       },
       "original": {
@@ -68,6 +68,22 @@
       }
     },
     "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1708296515,
+        "narHash": "sha256-FyF489fYNAUy7b6dkYV6rGPyzp+4tThhr80KNAaF/yY=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b98a4e1746acceb92c509bc496ef3d0e5ad8d4aa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1705856552,
         "narHash": "sha256-JXfnuEf5Yd6bhMs/uvM67/joxYKoysyE3M2k6T3eWbg=",
@@ -83,17 +99,33 @@
         "type": "github"
       }
     },
+    "npe": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-UKRxDa5e1b/8QltyQclsR/LsWKg7sT7hpk4aEWw9zww=",
+        "path": "/nix/store/nycxx8gmrx8ya5c5jikkc31qdsj54655-source/common/nvidia-gpu-exporter",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/nycxx8gmrx8ya5c5jikkc31qdsj54655-source/common/nvidia-gpu-exporter",
+        "type": "path"
+      }
+    },
     "root": {
       "inputs": {
         "musnix": "musnix",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-brian": "nixpkgs-brian",
+        "npe": "npe",
         "smc": "smc"
       }
     },
     "smc": {
       "inputs": {
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1707995662,

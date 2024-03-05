@@ -1,5 +1,4 @@
-#
-{ inputs, config, lib, pkgs, pkgs-brian, smc, ... }:
+{ inputs, config, lib, pkgs, pkgs-brian, smc, npe, ... }:
 
 {
   nix = {
@@ -105,16 +104,16 @@
       "internal" = {
         interfaces = [ "vlan420" ];
       };
-      "external" = {
-        interfaces = [ "vlan100" ];
-      };
+      #"external" = {
+      #  interfaces = [ "vlan100" ];
+      #};
     };
     vlans = {
       vlan420 = { id=420; interface="enp10s0"; };
-      vlan100 = { id=100; interface="enp10s0"; };
+      #vlan100 = { id=100; interface="enp10s0"; };
     };
     interfaces = {
-      external.useDHCP = true;
+      #external.useDHCP = true;
       internal.ipv4.addresses = [{
         address = "10.42.0.10";
         prefixLength = 24;
@@ -125,7 +124,7 @@
       }];
     };
     defaultGateway = "10.42.0.1";
-    nameservers = [ "10.42.0.2" "10.42.0.12" ];
+    nameservers = [ "10.42.0.1" ];
     extraHosts = ''
       192.168.99.30 basket.4amlunch.net basket
     '';
@@ -169,6 +168,11 @@
   security.rtkit.enable = true;
 
   services = {
+    udev = {
+      extraRules = ''
+        SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
+      '';
+    };
     zerotierone = {
       enable = true;
       joinNetworks = [
@@ -278,14 +282,19 @@
       "users"
       "docker"
       "kvm"
-      "wiresharkre"
+      "wireshark"
       "onepassword"
       "onepassword-cli"
       "qemu-libvirtd"
     ];
   };
   
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "electron-25.9.0"
+      ];
+  };
 
   environment.variables.EDITOR = "nvim";
   environment.systemPackages = with pkgs; [
@@ -378,6 +387,7 @@
     nix-prefetch-git
     nix-prefetch-github
     #smc.packages.x86_64-linux.default { lib = lib; }
+    #npe.packages.x86_64-linux.default { lib = lib; }
     gnumake
     xsel
     xclip
@@ -386,6 +396,9 @@
     tree-sitter
     mailspring
     rsync
+    obsidian
+    packwiz
+    #warp-terminal
   ];
 
   programs = {

@@ -22,6 +22,7 @@
     gcc
     rustup
     minikube
+    kind
     kubernetes-helm
     cilium-cli
     chart-testing

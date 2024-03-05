@@ -1,47 +1,30 @@
-{
-  pkgs ? import (fetchTarball {
-    url = "https://github.com/utkuozdemir/nvidia_gpu_exporter/releases/download/v1.2.0/nvidia_gpu_exporter_1.2.0_linux_x86_64.tar.gz";
-    sha256 = "0qff1yxza9lmszchxx484bc06mni0014p1apbv1zh2ips22jkwif";
-  }) {}
-}:
-pkgs.stdenv.mkDerivation rec {
-  pname = "nvidia-gpu-exporter";
-  version = "1.2.0";
-
-  installPhase = ''
-    ls $src
-    mkdir -p $out/bin
-    #mv chord $out/bin
-  '';
-}
 { lib, buildGoModule, fetchFromGitHub }:
 
 buildGoModule rec {
-  pname = "dstask";
+  pname = "nvidia_gpu_exporter";
   version = "v1.2.0";
-  rev = "d687a0f9aec634a808cfa0df4aecb06ab4f57732";
+  rev = "01f163635ca74aefcfb62cab4dc0d25cc26c0562";
 
-  subPackages = [ "cmd/dstask.go" ];
+  modSha245 = lib.fakeSha256;
+  vendorHash = "sha256-6d6mMq2bG0D7Cd4ApRGAN+PM56wP+S0jOu09eucLCf8=";
 
   src = fetchFromGitHub {
-    owner = "naggie";
-    repo = "dstask";
+    owner = "utkuozdemir";
+    repo = "nvidia_gpu_exporter";
     rev = "${version}";
-    sha256 = "16z5zlfj955pzsj0l58835slvpchdaq2vbyx2fjzi6y9xn1z2nd1";
+    hash =  "sha256-RS5vMh4R/BcrhW/azx+J8TOdLA6oZObQBe6bvUPpboQ=";
+
   };
 
-  modSha256 = "1ydzqg8p2d514sdb34b2p6k1474nr1drrn3gay2cpyhrj5l51cj3";
-
-  buildFlagsArray = [ ''-ldflags=-w -s
-    -X "github.com/naggie/dstask.VERSION=${version}"
-    -X "github.com/naggie/dstask.GIT_COMMIT=${rev}"
-  '' ];
+  ldflags = [
+    "-X github.com/utkuozdemir/nvidia_gpu_exporter.VERSION=${version}"
+    "-X github.com/utkuozdemir/nvidia_gpu_exporter.GIT_COMMIT=${rev}"
+  ];
 
   meta = with lib; {
-    description = "A personal task tracker designed to help you focus";
+    description = "Prometheus exporter that uses nvidia-smi";
     license = licenses.mit;
-    homepage = "https://github.com/naggie/dstask";
-    maintainers = with maintainers; [ foxit64 ];
+    homepage = "https://github.com/eutkuozdemir/nvidia_gpu_exporter";
+    maintainers = with maintainers; [ utkuozdemir ];
   };
-
 }
