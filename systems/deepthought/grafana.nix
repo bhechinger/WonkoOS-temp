@@ -89,6 +89,14 @@
             ];
           }];
         }
+        {
+          job_name = "sierra";
+          static_configs = [{
+            targets = [
+              "10.42.0.251:9100"
+            ];
+          }];
+        }
       ];
     };
 
