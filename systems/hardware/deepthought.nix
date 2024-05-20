@@ -14,6 +14,7 @@
       kernelModules = [ ];
     };
     kernelModules = [ "kvm-amd" ];
+    kernelParams = [ "amd_pstate=active" ];
     extraModulePackages = [ ];
     kernel.sysctl = {
       "fs.inotify.max_user_watches" = 524288; # default: 8192

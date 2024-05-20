@@ -5,27 +5,27 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1707432312,
-        "narHash": "sha256-kI/OkDTH+tNrABcGXK0xdxOyd414YDo5hfpMZ3aWPWs=",
+        "lastModified": 1716064984,
+        "narHash": "sha256-oV/XDEBXjEpdFx6b4qmhicMNlOMo2aWCdpDBFf98G70=",
         "owner": "bhechinger",
         "repo": "musnix",
-        "rev": "b54b0059acfb6a15fdcd44b3466018507a6353a8",
+        "rev": "8617a9fee0253ac9fe5ff11b6f9c80fb97920a73",
         "type": "github"
       },
       "original": {
         "owner": "bhechinger",
-        "ref": "zen-kernel",
+        "ref": "add_6_9",
         "repo": "musnix",
         "type": "github"
       }
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1707268954,
-        "narHash": "sha256-2en1kvde3cJVc3ZnTy8QeD2oKcseLFjYPLKhIGDanQ0=",
+        "lastModified": 1715266358,
+        "narHash": "sha256-doPgfj+7FFe9rfzWo1siAV2mVCasW+Bh8I1cToAXEE4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f8e2ebd66d097614d51a56a755450d4ae1632df1",
+        "rev": "f1010e0469db743d14519a1efd37e23f8513d714",
         "type": "github"
       },
       "original": {
@@ -37,11 +37,11 @@
     },
     "nixpkgs-brian": {
       "locked": {
-        "lastModified": 1707989696,
-        "narHash": "sha256-bQoOlaawSpyKGF4awfDq4RIn2VUTDCpY/E8Ub1aflAI=",
+        "lastModified": 1716066763,
+        "narHash": "sha256-7kDUqFic7WV3QTgpUFAXx0jPJrrr5KVmhJiTyQFHnjE=",
         "owner": "bhechinger",
         "repo": "nixpkgs",
-        "rev": "95b862d406939546e9522171c797bf6a530b19c1",
+        "rev": "650d127ae616fb41cb1cb7e3ef85a0d64de2eada",
         "type": "github"
       },
       "original": {
@@ -53,11 +53,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1709237383,
-        "narHash": "sha256-cy6ArO4k5qTx+l5o+0mL9f5fa86tYUX3ozE1S+Txlds=",
+        "lastModified": 1715961556,
+        "narHash": "sha256-+NpbZRCRisUHKQJZF3CT+xn14ZZQO+KjxIIanH3Pvn4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "1536926ef5621b09bba54035ae2bb6d806d72ac8",
+        "rev": "4a6b83b05df1a8bd7d99095ec4b4d271f2956b64",
         "type": "github"
       },
       "original": {
@@ -106,11 +106,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-UKRxDa5e1b/8QltyQclsR/LsWKg7sT7hpk4aEWw9zww=",
-        "path": "/nix/store/bfnkcvwn4wrci5z9pzvvpq2xn1qmilnk-source/common/nvidia-gpu-exporter",
+        "path": "/nix/store/zb5wb0p1k75p4jj78090jyra5g1xmpza-source/common/nvidia-gpu-exporter",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/bfnkcvwn4wrci5z9pzvvpq2xn1qmilnk-source/common/nvidia-gpu-exporter",
+        "path": "/nix/store/zb5wb0p1k75p4jj78090jyra5g1xmpza-source/common/nvidia-gpu-exporter",
         "type": "path"
       }
     },

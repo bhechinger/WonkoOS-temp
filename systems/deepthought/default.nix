@@ -12,6 +12,7 @@
       ./development.nix
       ./grafana.nix
       ./networking.nix
+      ./vscode.nix
 #      ../common/nix-alien.nix
     ];
 
@@ -114,18 +115,26 @@
   };
 
   virtualisation = {
-    docker.enable = true;
+    containers.enable = true;
+    multipass.enable = true;
+    docker = {
+        autoPrune.enable = true;
+        enable = true;
+        enableNvidia = true;
+        storageDriver = "zfs";
+    };
     libvirtd = {
       enable = true;
       qemu = {
         swtpm.enable = true;
-	ovmf = {
-	  enable = true;
-	  packages = [ pkgs.OVMFFull.fd ];
-	};
+	    ovmf = {
+	      enable = true;
+	        packages = [ pkgs.OVMFFull.fd ];
+	    };
       };
     };
     spiceUSBRedirection.enable = true;
+    waydroid.enable = true;
   };
 
   sound.enable = false;
@@ -133,6 +142,10 @@
   security.rtkit.enable = true;
 
   services = {
+    flatpak.enable = true;
+
+    atuin.enable = true;
+
     udev = {
       extraRules = ''
         SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
@@ -168,9 +181,9 @@
       enable = true;
       xkb.layout = "us";
       videoDrivers = ["nvidia"];
-      displayManager.sddm.enable = true;
       desktopManager.plasma5.enable = true;
     };
+    displayManager.sddm.enable = true;
 
     printing = {
       enable = true;
@@ -225,8 +238,7 @@
     soundcardPciId = "08:00.0";
     kernel = {
         realtime = true;
-        packages = pkgs.linuxPackages_latest_rt;
-        #packages = pkgs.linuxPackages_6_7_rt;
+        packages = pkgs.linuxPackages_6_8_rt;
     };
     rtirq = {
       resetAll = 1;
@@ -272,7 +284,7 @@
     stress
     stress-ng
     firestarter
-    gpu-burn
+    #gpu-burn
     util-linux
     kate
     libsForQt5.kcalc
@@ -309,12 +321,13 @@
     irccloud
     s-tui
     raysession
-    ardour
+    pkgs-brian.ardour
     spotify
     nfs-utils
     prismlauncher
     zulu8
     zulu17
+    zulu21
     alsa-lib
     virt-viewer
     virtiofsd
@@ -364,6 +377,13 @@
     obsidian
     packwiz
     #warp-terminal
+    todoist
+    btop
+    nheko
+    keycloak
+    weston
+    lzip
+    lsp-plugins
   ];
 
   programs = {
