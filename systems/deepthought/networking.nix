@@ -7,6 +7,9 @@
     domain = "4amlunch.net";
     useDHCP = false;
     bridges = {
+      "trunk" = {
+        interfaces = [ "enp10s0" ];
+      };
       "internal" = {
         interfaces = [ "vlan420" ];
       };
@@ -30,7 +33,7 @@
       }];
     };
     defaultGateway = "10.42.0.1";
-    nameservers = [ "10.42.0.1" ];
+    nameservers = [ "10.42.0.2 10.42.0.12" ];
     extraHosts = ''
       192.168.99.30 basket.4amlunch.net basket
     '';
