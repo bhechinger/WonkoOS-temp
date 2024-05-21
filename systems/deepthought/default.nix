@@ -183,7 +183,10 @@
       videoDrivers = ["nvidia"];
       desktopManager.plasma5.enable = true;
     };
-    displayManager.sddm.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
 
     printing = {
       enable = true;
@@ -273,7 +276,11 @@
       ];
   };
 
-  environment.variables.EDITOR = "nvim";
+  environment = {
+      variables.EDITOR = "nvim";
+      sessionVariables.NIXOS_OZONE_WL = "1";
+  };
+
   environment.systemPackages = with pkgs; [
     linuxKernel.packages.linux_xanmod_stable.zenpower
     glances
@@ -384,6 +391,15 @@
     weston
     lzip
     lsp-plugins
+    wofi
+    wofi-pass
+    wofi-emoji
+    waybar
+    hyprpaper
+    zfs-autobackup
+    zfstools
+    show-midi
+    kitty
   ];
 
   programs = {
@@ -445,6 +461,12 @@
 
     zsh = {
       enable = true;
+    };
+
+    xwayland.enable = true;
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
     };
   };
 
