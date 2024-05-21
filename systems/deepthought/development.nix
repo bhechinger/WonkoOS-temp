@@ -39,5 +39,6 @@
     go
     podman
     podman-compose
+    zellij
   ];
 }

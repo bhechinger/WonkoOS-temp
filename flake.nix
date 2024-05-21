@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-brian.url = "github:bhechinger/nixpkgs/update-stuff";
-    musnix.url = "github:bhechinger/musnix/add_6_9";
+    musnix.url = "github:musnix/musnix";
     smc.url = "github:bhechinger/spotify-midi-control";
     npe.url = "./common/nvidia-gpu-exporter";
   };
