@@ -105,11 +105,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-UKRxDa5e1b/8QltyQclsR/LsWKg7sT7hpk4aEWw9zww=",
-        "path": "/nix/store/fvzy7nnlz961q50f52ivvjym167lzynf-source/common/nvidia-gpu-exporter",
+        "path": "/nix/store/jchasxcj0b8nhk6zwipnf5asm9c164ws-source/common/nvidia-gpu-exporter",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/fvzy7nnlz961q50f52ivvjym167lzynf-source/common/nvidia-gpu-exporter",
+        "path": "/nix/store/jchasxcj0b8nhk6zwipnf5asm9c164ws-source/common/nvidia-gpu-exporter",
         "type": "path"
       }
     },
