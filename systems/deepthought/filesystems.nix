@@ -76,5 +76,10 @@
       autoScrub.enable = true;
       trim.enable = true;
     };
+
+    openiscsi = {
+      enable = true;
+      name = "iqn.1996-04.de.suse:01:456e953a9ed4";
+    };
   };
 }
