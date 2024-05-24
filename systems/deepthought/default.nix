@@ -14,6 +14,8 @@
       ./networking.nix
       ./vscode.nix
       ./filesystems.nix
+      ./services.nix
+      ./users.nix
 #      ../common/nix-alien.nix
     ];
 
@@ -23,11 +25,6 @@
     supportedFilesystems = [ "nfs" ];
     kernelParams = [ "mitigations=off" ];
   };
-
-  security.pam.loginLimits = [
-    { domain = "wonko"; item = "nofile"; type = "hard"; value = "524288"; }
-    { domain = "wayland"; item = "nofile"; type = "hard"; value = "524288"; }
-  ];
 
   time.timeZone = "Europe/Lisbon";
 
@@ -89,43 +86,6 @@
     };
   };
 
-  users.users = {
-    wonko = {
-      isNormalUser = true;
-      description = "Brian Hechinger";
-      shell = pkgs.zsh;
-      extraGroups = [
-        "wheel"
-        "audio"
-        "libvirtd"
-        "users"
-        "docker"
-        "kvm"
-        "wireshark"
-        "onepassword"
-        "onepassword-cli"
-        "qemu-libvirtd"
-      ];
-    };
-    wayland = {
-      isNormalUser = true;
-      description = "Wayland Testuser";
-      shell = pkgs.zsh;
-      extraGroups = [
-        "wheel"
-        "audio"
-        "libvirtd"
-        "users"
-        "docker"
-        "kvm"
-        "wireshark"
-        "onepassword"
-        "onepassword-cli"
-        "qemu-libvirtd"
-      ];
-    };
-  };
-  
   nixpkgs.config = {
       allowUnfree = true;
       permittedInsecurePackages = [
