@@ -68,22 +68,6 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1708296515,
-        "narHash": "sha256-FyF489fYNAUy7b6dkYV6rGPyzp+4tThhr80KNAaF/yY=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "b98a4e1746acceb92c509bc496ef3d0e5ad8d4aa",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
         "lastModified": 1705856552,
         "narHash": "sha256-JXfnuEf5Yd6bhMs/uvM67/joxYKoysyE3M2k6T3eWbg=",
         "owner": "nixos",
@@ -98,33 +82,17 @@
         "type": "github"
       }
     },
-    "npe": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_3"
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-UKRxDa5e1b/8QltyQclsR/LsWKg7sT7hpk4aEWw9zww=",
-        "path": "/nix/store/63dp6q5m3dq5x6m50npahxznq7iggv37-source/common/nvidia-gpu-exporter",
-        "type": "path"
-      },
-      "original": {
-        "path": "/nix/store/63dp6q5m3dq5x6m50npahxznq7iggv37-source/common/nvidia-gpu-exporter",
-        "type": "path"
-      }
-    },
     "root": {
       "inputs": {
         "musnix": "musnix",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-brian": "nixpkgs-brian",
-        "npe": "npe",
         "smc": "smc"
       }
     },
     "smc": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1707995662,
