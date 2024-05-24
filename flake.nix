@@ -6,10 +6,10 @@
     nixpkgs-brian.url = "github:bhechinger/nixpkgs/update-stuff";
     musnix.url = "github:musnix/musnix";
     smc.url = "github:bhechinger/spotify-midi-control";
-    npe.url = "./common/nvidia-gpu-exporter";
+    #npe.url = "./common/nvidia-gpu-exporter";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-brian, smc, npe, musnix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-brian, smc, musnix, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -31,7 +31,7 @@
 	    };
 
         smc = import smc {};
-        npe = import npe {};
+        #npe = import npe {};
 
 	    inherit inputs;
 	  };

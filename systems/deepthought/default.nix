@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, pkgs-brian, smc, npe, ... }:
+{ inputs, config, lib, pkgs, pkgs-brian, smc, ... }:
 
 {
   nix = {
