@@ -4,19 +4,25 @@
   services = {
     flatpak.enable = true;
 
-    atuin.enable = true;
+    #atuin.enable = true;
 
     udev = {
       extraRules = ''
         SUBSYSTEM=="usbmon", GROUP="wireshark", MODE="0640"
       '';
     };
+
+    postgresql = {
+      enable = true;
+    };
+
     zerotierone = {
       enable = true;
       joinNetworks = [
         "a84ac5c10a853bc1"
       ];
     };
+
     avahi = {
       enable = true;
       nssmdns4 = true;
@@ -60,7 +66,7 @@
     hardware = {
       openrgb = {
         enable = true;
-	motherboard = "amd";
+	    motherboard = "amd";
       };
     };
 
