@@ -16,7 +16,8 @@
       ./filesystems.nix
       ./services.nix
       ./users.nix
-#      ../common/nix-alien.nix
+      ./audio.nix
+      #./common/nix-alien.nix
     ];
 
   boot = {
@@ -24,6 +25,7 @@
     loader.efi.canTouchEfiVariables = true;
     supportedFilesystems = [ "nfs" ];
     kernelParams = [ "mitigations=off" ];
+    kernelModules = [ "vhost_vsock" ];
   };
 
   time.timeZone = "Europe/Lisbon";
@@ -66,26 +68,6 @@
     waydroid.enable = true;
   };
 
-  sound.enable = false;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-
-  musnix = {
-    enable = true;
-    ffado.enable = true;
-    soundcardPciId = "08:00.0";
-    kernel = {
-        realtime = true;
-        packages = pkgs.linuxPackages_6_8_rt;
-    };
-    rtirq = {
-      resetAll = 1;
-      prioLow = 0;
-      enable = true;
-      nameList = "rtc0 firewire_ohci";
-    };
-  };
-
   nixpkgs.config = {
       allowUnfree = true;
       permittedInsecurePackages = [
@@ -99,7 +81,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    linuxKernel.packages.linux_xanmod_stable.zenpower
     glances
     zenmonitor
     nixfmt
@@ -112,8 +93,6 @@
     util-linux
     kate
     libsForQt5.kcalc
-    ffado
-    alsa-utils
     pciutils
     discord
     slack
@@ -124,7 +103,6 @@
     skypeforlinux
     usbutils
     lshw
-    postgresql_15
     spaceship-prompt
     jotta-cli
     libreoffice
@@ -144,15 +122,11 @@
     wget
     irccloud
     s-tui
-    raysession
-    pkgs-brian.ardour
-    spotify
     nfs-utils
     prismlauncher
     zulu8
     zulu17
     zulu21
-    alsa-lib
     virt-viewer
     virtiofsd
     spice 
@@ -166,16 +140,7 @@
     wmctrl
     supercollider
     supercollider_scel
-    libjack2
-    jack2
-    qjackctl
-    pavucontrol
-    jack2Full
-    jack_capture
-    pulseaudioFull
     gnuplot
-    audacious
-    qpwgraph
     file
     lutris
     wineWow64Packages.stagingFull
@@ -200,7 +165,6 @@
     rsync
     obsidian
     packwiz
-    #warp-terminal
     todoist
     btop
     nheko
@@ -215,7 +179,6 @@
     hyprpaper
     zfs-autobackup
     zfstools
-    show-midi
     kitty
     libheif
   ];
