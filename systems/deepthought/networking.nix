@@ -36,6 +36,7 @@
     nameservers = [ "10.42.0.2 10.42.0.12" ];
     extraHosts = ''
       192.168.99.30 basket.4amlunch.net basket
+      192.168.49.2 bahmni.k8s payments-bahmni.k8s
     '';
     firewall.enable = false;
   };

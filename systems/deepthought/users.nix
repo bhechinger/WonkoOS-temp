@@ -22,6 +22,8 @@
         "onepassword"
         "onepassword-cli"
         "qemu-libvirtd"
+	"lp"
+	"scanner"
       ];
     };
     wayland = {
@@ -39,6 +41,7 @@
         "onepassword"
         "onepassword-cli"
         "qemu-libvirtd"
+	"scanner"
       ];
     };
   };
