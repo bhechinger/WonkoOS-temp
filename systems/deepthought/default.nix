@@ -34,7 +34,6 @@
     kernelParams = [ "mitigations=off" "preempt=full" "nohz_full=all" ];
     kernelModules = [ "vhost_vsock" "evdi" ];
     kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
-    #extraModulePackages = with config.boot.kernelPackages; [ vhost_vsock evdi wireguard ];
   };
 
   time.timeZone = "Europe/Lisbon";
@@ -80,13 +79,13 @@
   };
 
   nixpkgs.config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [
-        "electron-25.9.0"
-      ];
-      packageOverrides = pkgs: {
-        xsaneGimp = pkgs.xsane.override { gimpSupport = true; };
-      };
+    allowUnfree = true;
+    permittedInsecurePackages = [
+     "electron-25.9.0"
+    ];
+    packageOverrides = pkgs: {
+      xsaneGimp = pkgs.xsane.override { gimpSupport = true; };
+    };
   };
 
   environment = {
@@ -298,8 +297,7 @@ user_allow_other
       autosuggestions.enable = true;
       ohMyZsh = {
         enable = true;
-	#plugins = [ "git" "thefuck" ];
-	plugins = [ "git" ];
+        plugins = [ "git" ];
       };
       #enableCompletetion = false; # so we can use zsh-autocomplete
     };
@@ -314,7 +312,7 @@ user_allow_other
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 4d --keep 3";
-      flake = "/home/user/my-nixos-config";
+      flake = "/home/wonko/projects/nix/WonkoOS";
     };
   };
 

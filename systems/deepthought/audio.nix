@@ -21,6 +21,36 @@
     };
   };
 
+  services = {
+    pipewire = {
+      enable = true;
+      audio.enable = true;
+      wireplumber = {
+        enable = true;
+      };
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+      socketActivation = true;
+    };
+
+#    spotifyd = {
+#      enable = true;
+#      settings = {
+#        global = {
+#    	  bitrate = 320;
+#    	  username = "";
+#    	  password = "";
+#    	  backend = "pulseaudio";
+#    	  device = "pipewire";
+#    	  control = "pipewire";
+#    	  device_type = "computer";
+#    	};
+#      };
+#    };
+  };
+
   environment.systemPackages = with pkgs; [
     ffado
     alsa-utils

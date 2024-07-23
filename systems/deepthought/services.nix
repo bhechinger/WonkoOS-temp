@@ -28,22 +28,9 @@
       nssmdns6 = true;
       publish = {
         enable = true;
-	addresses = true;
-	userServices = true;
+        addresses = true;
+        userServices = true;
       };
-    };
-
-    pipewire = {
-      enable = true;
-      audio.enable = true;
-      wireplumber = {
-        enable = true;
-      };
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      jack.enable = true;
-      socketActivation = true;
     };
 
     xserver = {
@@ -69,6 +56,7 @@
         pkgs.hplipWithPlugin
       ];
     };
+
     openssh.enable = true;
     rpcbind.enable = true; # needed for NFS
 
@@ -78,21 +66,6 @@
 	    motherboard = "amd";
       };
     };
-
-#   spotifyd = {
-#     enable = true;
-#     settings = {
-#       global = {
-#	      bitrate = 320;
-#	      username = "";
-#	      password = "";
-#	      backend = "pulseaudio";
-#	      device = "pipewire";
-#	      control = "pipewire";
-#	      device_type = "computer";
-#	    };
-#     };
-#   };
 
     spice-vdagentd.enable = true;
 
