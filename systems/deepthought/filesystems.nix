@@ -54,6 +54,16 @@
       what = "basket.4amlunch.net:/homes";
       where = "/mnt/homes";
     })
+
+    (commonMountOptions // {
+      what = "bob.4amlunch.net:/home/docker/paperless/consume";
+      where = "/mnt/paperless/consume";
+    })
+
+    (commonMountOptions // {
+      what = "bob.4amlunch.net:/home/docker/paperless/export";
+      where = "/mnt/paperless/export";
+    })
   ];
 
   systemd.automounts = let commonAutoMountOptions = {
@@ -69,6 +79,8 @@
     (commonAutoMountOptions // { where = "/mnt/Brian"; })
     (commonAutoMountOptions // { where = "/mnt/NetShare"; })
     (commonAutoMountOptions // { where = "/mnt/homes"; })
+    (commonAutoMountOptions // { where = "/mnt/paperless/consume"; })
+    (commonAutoMountOptions // { where = "/mnt/paperless/export"; })
   ];
 
   services = {

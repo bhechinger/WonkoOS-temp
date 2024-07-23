@@ -6,13 +6,14 @@
     jetbrains.idea-ultimate
     jetbrains.gateway
     #jetbrains.datagrip
-    #jetbrains.clion
+    jetbrains.clion
     jetbrains.rust-rover
     fira-code
     gh
     glab
     kubernetes-helm
     kubectl
+    kubeswitch
     krew
     kustomize
     #awscli2
@@ -28,8 +29,8 @@
     kubernetes-helm
     cilium-cli
     chart-testing
-    google-cloud-sdk-gce
-    (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
+    #google-cloud-sdk-gce
+    #(google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
     k9s
     kube-capacity
     action-validator
@@ -40,5 +41,6 @@
     podman
     podman-compose
     zellij
+    libxslt
   ];
 }

@@ -6,6 +6,11 @@
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
+  #nix.gc = {
+  #  automatic = true;
+  #  options = "--delete-older-than 7d";
+  #};
+
   imports =
     [ # Include the results of the hardware scan.
       ../hardware/deepthought.nix
@@ -17,6 +22,8 @@
       ./services.nix
       ./users.nix
       ./audio.nix
+      ./mailcap_hack.nix
+      ./atuin.nix
       #./common/nix-alien.nix
     ];
 
@@ -24,8 +31,10 @@
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     supportedFilesystems = [ "nfs" ];
-    kernelParams = [ "mitigations=off" ];
-    kernelModules = [ "vhost_vsock" ];
+    kernelParams = [ "mitigations=off" "preempt=full" "nohz_full=all" ];
+    kernelModules = [ "vhost_vsock" "evdi" ];
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
+    #extraModulePackages = with config.boot.kernelPackages; [ vhost_vsock evdi wireguard ];
   };
 
   time.timeZone = "Europe/Lisbon";
@@ -44,6 +53,8 @@
       LC_TIME = "pt_PT.UTF-8";
     };
   };
+
+  zramSwap.enable = true;
 
   virtualisation = {
     containers.enable = true;
@@ -73,117 +84,156 @@
       permittedInsecurePackages = [
         "electron-25.9.0"
       ];
+      packageOverrides = pkgs: {
+        xsaneGimp = pkgs.xsane.override { gimpSupport = true; };
+      };
   };
 
   environment = {
-      variables.EDITOR = "nvim";
-      sessionVariables.NIXOS_OZONE_WL = "1";
+    variables.EDITOR = "nvim";
+    sessionVariables.NIXOS_OZONE_WL = "1";
+    etc = {
+      "fuse.conf" = {
+      text = ''
+# add user_allow_other for s3fs
+user_allow_other
+      '';
+      mode = "0644";
+      };
+    };
+    systemPackages = with pkgs; [
+      glances
+      zenmonitor
+      nixfmt
+      davinci-resolve
+      ffmpeg_5-full
+      stress
+      stress-ng
+      firestarter
+      #gpu-burn
+      util-linux
+      kate
+      libsForQt5.kcalc
+      pciutils
+      discord
+      slack
+      franz
+      whatsapp-for-linux
+      signal-desktop
+      fractal
+      skypeforlinux
+      usbutils
+      lshw
+      spaceship-prompt
+      jotta-cli
+      libreoffice
+      dropbox
+      dropbox-cli
+      corectrl
+      fuse
+      fzf
+      gnupg
+      man
+      screen
+      sedutil
+      thunderbird
+      jq
+      yq
+      openssl
+      wget
+      irccloud
+      s-tui
+      nfs-utils
+      prismlauncher
+      zulu8
+      zulu17
+      zulu21
+      virt-viewer
+      virtiofsd
+      spice 
+      spice-gtk
+      spice-protocol
+      win-virtio
+      win-spice
+      adwaita-icon-theme
+      helix
+      lsof
+      wmctrl
+      supercollider
+      supercollider_scel
+      gnuplot
+      file
+      lutris
+      wineWow64Packages.stagingFull
+      xorg.xkill
+      virtiofsd
+      ripgrep
+      heroic
+      grapejuice
+      iamb
+      irssi
+      nix-prefetch-git
+      nix-prefetch-github
+      #smc.packages.x86_64-linux.default { lib = lib; }
+      #npe.packages.x86_64-linux.default { lib = lib; }
+      gnumake
+      xsel
+      xclip
+      vimPlugins.lazy-nvim
+      unzip
+      tree-sitter
+      mailspring
+      rsync
+      #obsidian
+      packwiz
+      todoist
+      btop
+      nheko
+      keycloak
+      weston
+      lzip
+      lsp-plugins
+      wofi
+      wofi-pass
+      wofi-emoji
+      waybar
+      hyprpaper
+      zfs-autobackup
+      zfstools
+      kitty
+      libheif
+      sqlite
+      moonlight-qt
+      kdePackages.krfb
+      sshfs
+      protonmail-bridge
+      telegram-desktop
+      cdrtools
+      todoist
+      todoist-electron
+      cargo-udeps
+      chromium
+      hplip
+      gscan2pdf
+      backblaze-b2
+      s3fs
+      zsh-autocomplete
+      cmctl
+      oxtools
+      linuxKernel.packages.linux_6_9.systemtap
+      gimp-with-plugins
+      xsane
+      unrar
+      protontricks
+      pr-tracker
+      nix-output-monitor
+      nix-tree
+      poppler_utils
+    ];
   };
 
-  environment.systemPackages = with pkgs; [
-    glances
-    zenmonitor
-    nixfmt
-    davinci-resolve
-    ffmpeg_5-full
-    stress
-    stress-ng
-    firestarter
-    #gpu-burn
-    util-linux
-    kate
-    libsForQt5.kcalc
-    pciutils
-    discord
-    slack
-    franz
-    whatsapp-for-linux
-    signal-desktop
-    fractal
-    skypeforlinux
-    usbutils
-    lshw
-    spaceship-prompt
-    jotta-cli
-    libreoffice
-    dropbox
-    dropbox-cli
-    corectrl
-    fuse
-    fzf
-    gnupg
-    man
-    screen
-    sedutil
-    thunderbird
-    jq
-    yq
-    openssl
-    wget
-    irccloud
-    s-tui
-    nfs-utils
-    prismlauncher
-    zulu8
-    zulu17
-    zulu21
-    virt-viewer
-    virtiofsd
-    spice 
-    spice-gtk
-    spice-protocol
-    win-virtio
-    win-spice
-    gnome.adwaita-icon-theme
-    helix
-    lsof
-    wmctrl
-    supercollider
-    supercollider_scel
-    gnuplot
-    file
-    lutris
-    wineWow64Packages.stagingFull
-    xorg.xkill
-    virtiofsd
-    ripgrep
-    heroic
-    grapejuice
-    iamb
-    irssi
-    nix-prefetch-git
-    nix-prefetch-github
-    #smc.packages.x86_64-linux.default { lib = lib; }
-    #npe.packages.x86_64-linux.default { lib = lib; }
-    gnumake
-    xsel
-    xclip
-    vimPlugins.lazy-nvim
-    unzip
-    tree-sitter
-    mailspring
-    rsync
-    obsidian
-    packwiz
-    todoist
-    btop
-    nheko
-    keycloak
-    weston
-    lzip
-    lsp-plugins
-    wofi
-    wofi-pass
-    wofi-emoji
-    waybar
-    hyprpaper
-    zfs-autobackup
-    zfstools
-    kitty
-    libheif
-  ];
-
   programs = {
+    extra-container.enable = true;
     _1password.enable = true;
     _1password-gui.enable = true;
     browserpass.enable = true;
@@ -218,6 +268,8 @@
     dconf.enable = true; # virt-manager requires dconf to remember settings
     virt-manager.enable = true;
 
+    kdeconnect.enable = true;
+
     nix-ld = {
       enable = true;
     };
@@ -242,6 +294,14 @@
 
     zsh = {
       enable = true;
+      syntaxHighlighting.enable = true;
+      autosuggestions.enable = true;
+      ohMyZsh = {
+        enable = true;
+	#plugins = [ "git" "thefuck" ];
+	plugins = [ "git" ];
+      };
+      #enableCompletetion = false; # so we can use zsh-autocomplete
     };
 
     xwayland.enable = true;
@@ -249,13 +309,20 @@
       enable = true;
       xwayland.enable = true;
     };
+
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 4d --keep 3";
+      flake = "/home/user/my-nixos-config";
+    };
   };
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      #driSupport = true;
+      #driSupport32Bit = true;
     };
 
     nvidia = {
@@ -274,7 +341,13 @@
 
       nvidiaSettings = true;
 
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+    };
+
+    sane = {
+      enable = true;
+      extraBackends = [ pkgs.hplipWithPlugin ];
+      disabledDefaultBackends = [ "escl" "v4l" ];
     };
   };
 

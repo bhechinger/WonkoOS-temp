@@ -17,8 +17,8 @@
     kernelParams = [ "amd_pstate=active" ];
     extraModulePackages = [ ];
     kernel.sysctl = {
-      "fs.inotify.max_user_watches" = 524288; # default: 8192
-      "fs.inotify.max_user_instances" = 256; # default: 128
+      "fs.inotify.max_user_watches" = 1048576; # default: 8192
+      "fs.inotify.max_user_instances" = 8192; # default: 128
       "fs.inotify.max_queued_events" = 32768; # default: 16384
     };
   };

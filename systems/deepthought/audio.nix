@@ -1,7 +1,6 @@
 { inputs, config, lib, pkgs, pkgs-brian, smc, ... }:
 
 {
-  sound.enable = false;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -9,10 +8,11 @@
     enable = true;
     ffado.enable = true;
     soundcardPciId = "08:00.0";
-    kernel = {
-        realtime = true;
-        packages = pkgs.linuxPackages_6_8_rt;
-    };
+    #kernel = {
+    #    realtime = true;
+    #    packages = pkgs.linuxPackages_6_8_rt;
+    #};
+    rtcqs.enable = true;
     rtirq = {
       resetAll = 1;
       prioLow = 0;
@@ -39,5 +39,10 @@
     show-midi
     mopidy
     mopidy-bandcamp
+    mopidy-iris
+    mopidy-notify
+    mopidy-spotify
+    mopidy-soundcloud
+    lmms
   ];
 }

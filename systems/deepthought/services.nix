@@ -1,10 +1,8 @@
-{ inputs, config, lib, pkgs, pkgs-brian, smc, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   services = {
     flatpak.enable = true;
-
-    #atuin.enable = true;
 
     udev = {
       extraRules = ''
@@ -21,12 +19,18 @@
       joinNetworks = [
         "a84ac5c10a853bc1"
       ];
+      localConf = {};
     };
 
     avahi = {
       enable = true;
       nssmdns4 = true;
       nssmdns6 = true;
+      publish = {
+        enable = true;
+	addresses = true;
+	userServices = true;
+      };
     };
 
     pipewire = {
@@ -34,7 +38,6 @@
       audio.enable = true;
       wireplumber = {
         enable = true;
-        package = pkgs-brian.wireplumber;
       };
       alsa.enable = true;
       alsa.support32Bit = true;
@@ -47,11 +50,17 @@
       enable = true;
       xkb.layout = "us";
       videoDrivers = ["nvidia"];
-      desktopManager.plasma5.enable = true;
+      exportConfiguration = true;
     };
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
+
+    desktopManager.plasma6.enable = true;
+
+    displayManager = {
+      sddm = {
+        enable = true;
+        wayland.enable = true;
+      };
+      defaultSession = "plasmax11";
     };
 
     printing = {
