@@ -23,18 +23,18 @@
     {
       nixosConfigurations = {
         deepthought = nixpkgs.lib.nixosSystem {
-	  inherit system;
-	  specialArgs = {
-	    pkgs-brian = import nixpkgs-brian {
-	      system = system;
-	      config.allowUnfree = true;
-	    };
+          inherit system;
+          specialArgs = {
+            pkgs-brian = import nixpkgs-brian {
+              system = system;
+              config.allowUnfree = true;
+            };
 
-        smc = import smc {};
-        #npe = import npe {};
+            smc = import smc {};
+            #npe = import npe {};
 
-	    inherit inputs;
-	  };
+            inherit inputs;
+          };
 
           modules = [
             musnix.nixosModules.musnix

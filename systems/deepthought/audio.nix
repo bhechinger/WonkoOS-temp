@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, pkgs-brian, smc, ... }:
+{ inputs, config, lib, pkgs, pkgs-brian, ... }:
 
 {
   hardware.pulseaudio.enable = false;
@@ -74,5 +74,6 @@
     mopidy-spotify
     mopidy-soundcloud
     lmms
+    lsp-plugins
   ];
 }
