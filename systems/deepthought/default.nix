@@ -32,7 +32,11 @@
     loader.efi.canTouchEfiVariables = true;
     supportedFilesystems = [ "nfs" ];
     kernelParams = [ "mitigations=off" "preempt=full" "nohz_full=all" ];
-    kernelModules = [ "vhost_vsock" "evdi" ];
+    #kernelModules = [ "vhost_vsock" "evdi" ];
+    #extraModulePackages = [ pkgs.linuxKernel.packages.linux_6_8.evdi ];
+    #extraModprobeConfig = ''
+    #  options evdi initial_device_count=2
+    #'';
     kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
   };
 
@@ -53,7 +57,7 @@
     };
   };
 
-  zramSwap.enable = true;
+  #zramSwap.enable = true;
 
   virtualisation = {
     containers.enable = true;
@@ -109,7 +113,7 @@ user_allow_other
       stress
       stress-ng
       firestarter
-      #gpu-burn
+      gpu-burn
       util-linux
       kate
       libsForQt5.kcalc
@@ -191,7 +195,6 @@ user_allow_other
       keycloak
       weston
       lzip
-      lsp-plugins
       wofi
       wofi-pass
       wofi-emoji
@@ -228,6 +231,9 @@ user_allow_other
       nix-output-monitor
       nix-tree
       poppler_utils
+      xorg.libxcvt
+      nvtop
+      smartmontools
     ];
   };
 
@@ -339,7 +345,7 @@ user_allow_other
 
       nvidiaSettings = true;
 
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      #package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
 
     sane = {

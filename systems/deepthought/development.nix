@@ -42,5 +42,6 @@
     podman-compose
     zellij
     libxslt
+    graphviz
   ];
 }
