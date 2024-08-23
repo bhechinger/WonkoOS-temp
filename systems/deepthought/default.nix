@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, pkgs-brian, smc, ... }:
+{ inputs, config, lib, pkgs, pkgs-brian, ... }:
 
 {
   nix = {
@@ -28,8 +28,11 @@
     ];
 
   boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
+    loader = {
+      grub.memtest86.enable = true;
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
     supportedFilesystems = [ "nfs" ];
     kernelParams = [ "mitigations=off" "preempt=full" "nohz_full=all" ];
     #kernelModules = [ "vhost_vsock" "evdi" ];
@@ -65,7 +68,7 @@
     docker = {
         autoPrune.enable = true;
         enable = true;
-        enableNvidia = true;
+        #enableNvidia = true;
         storageDriver = "zfs";
     };
     libvirtd = {
@@ -109,7 +112,7 @@ user_allow_other
       zenmonitor
       nixfmt
       davinci-resolve
-      ffmpeg_5-full
+      #ffmpeg_5-full
       stress
       stress-ng
       firestarter
@@ -123,7 +126,7 @@ user_allow_other
       franz
       whatsapp-for-linux
       signal-desktop
-      fractal
+      #fractal
       skypeforlinux
       usbutils
       lshw
@@ -162,8 +165,8 @@ user_allow_other
       helix
       lsof
       wmctrl
-      supercollider
-      supercollider_scel
+      #supercollider
+      #supercollider_scel
       gnuplot
       file
       lutris
@@ -173,12 +176,12 @@ user_allow_other
       ripgrep
       heroic
       grapejuice
-      iamb
+      #iamb
       irssi
       nix-prefetch-git
       nix-prefetch-github
-      #smc.packages.x86_64-linux.default { lib = lib; }
-      #npe.packages.x86_64-linux.default { lib = lib; }
+#      inputs.smc.packages.x86_64-linux.default { lib = lib; }
+#      inputs.npe.packages.x86_64-linux.default { lib = lib; }
       gnumake
       xsel
       xclip
@@ -191,7 +194,7 @@ user_allow_other
       packwiz
       todoist
       btop
-      nheko
+      #nheko
       keycloak
       weston
       lzip
@@ -222,7 +225,7 @@ user_allow_other
       zsh-autocomplete
       cmctl
       oxtools
-      linuxKernel.packages.linux_6_9.systemtap
+      linuxKernel.packages.6_8.systemtap
       gimp-with-plugins
       xsane
       unrar
@@ -232,8 +235,17 @@ user_allow_other
       nix-tree
       poppler_utils
       xorg.libxcvt
-      nvtop
+      nvtopPackages.full
       smartmontools
+      p7zip
+      molly-guard
+      proton-pass
+      inputs.nix-inspect.packages.x86_64-linux.default
+      nmap
+      dig
+      gamescope
+      #keybase
+      #keybase-gui
     ];
   };
 
@@ -345,7 +357,7 @@ user_allow_other
 
       nvidiaSettings = true;
 
-      #package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
 
     sane = {
