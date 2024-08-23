@@ -6,7 +6,7 @@
     jetbrains.idea-ultimate
     jetbrains.gateway
     #jetbrains.datagrip
-    jetbrains.clion
+    #jetbrains.clion
     jetbrains.rust-rover
     fira-code
     gh
@@ -17,7 +17,7 @@
     krew
     kustomize
     #awscli2
-    python3
+    #python3
     gdb
     lldb
     gcc
@@ -43,5 +43,6 @@
     zellij
     libxslt
     graphviz
+    grpcurl
   ];
 }
