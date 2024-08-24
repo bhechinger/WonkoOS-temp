@@ -2,8 +2,8 @@
   description = "flake for 4amlunch.net hosts";
 
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-6_8.url = "github:NixOS/nixpkgs/96954e7ecb5dfda9d6ad7f42200d842547fb5160";
     nixpkgs-brian.url = "github:bhechinger/nixpkgs/update-stuff";
     musnix.url = "github:musnix/musnix";
     nix-inspect.url = "github:bluskript/nix-inspect";
@@ -11,7 +11,7 @@
     #npe.url = "./common/nvidia-gpu-exporter";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-brian, musnix, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-brian, nixpkgs-6_8, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -33,13 +33,18 @@
               config.allowUnfree = true;
             };
 
+            pkgs-6_8 = import nixpkgs-6_8 {
+              system = system;
+              config.allowUnfree = true;
+            };
+
 #            smc = import smc {};
 
             inherit inputs;
           };
 
           modules = [
-            musnix.nixosModules.musnix
+            inputs.musnix.nixosModules.musnix
             ./systems/deepthought/default.nix
           ];
         };

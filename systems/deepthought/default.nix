@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, pkgs-brian, ... }:
+{ inputs, config, lib, pkgs, pkgs-brian, pkgs-6_8, ... }:
 
 {
   nix = {
@@ -40,7 +40,9 @@
     #extraModprobeConfig = ''
     #  options evdi initial_device_count=2
     #'';
-    kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
+    #kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
+    kernelPackages = pkgs-6_8.linuxKernel.packages.linux_6_8;
+    zfs.package = pkgs-6_8.zfs;
   };
 
   time.timeZone = "Europe/Lisbon";
@@ -225,7 +227,7 @@ user_allow_other
       zsh-autocomplete
       cmctl
       oxtools
-      linuxKernel.packages.6_8.systemtap
+      pkgs-6_8.linuxKernel.packages.linux_6_8.systemtap
       gimp-with-plugins
       xsane
       unrar
