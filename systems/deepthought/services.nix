@@ -71,14 +71,6 @@
 
     spice-vdagentd.enable = true;
 
-    openvpn.servers = {
-      #nitradoVPN = { config = '' config /home/wonko/projects/Nitrado/vpn/client.conf ''; };
-      vyprVPN-Miami = {
-        config = '' config /home/wonko/.openvpn/vyprvpn/OpenVPN256/USA-Miami.ovpn '';
-        autoStart = false;
-      };
-    };
-
     sunshine = {
       enable = true;
       autoStart = true;
