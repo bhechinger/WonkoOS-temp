@@ -17,6 +17,7 @@
       ./development.nix
       ./grafana.nix
       ./networking.nix
+      ./vpns.nix
       ./vscode.nix
       ./filesystems.nix
       ./services.nix
