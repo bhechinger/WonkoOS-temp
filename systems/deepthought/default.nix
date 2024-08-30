@@ -85,7 +85,7 @@
       };
     };
     spiceUSBRedirection.enable = true;
-    waydroid.enable = true;
+    #waydroid.enable = true;
   };
 
   nixpkgs.config = {
@@ -247,8 +247,11 @@ user_allow_other
       nmap
       dig
       gamescope
+      sshpass
       #keybase
       #keybase-gui
+      bitwarden-desktop
+      bitwarden-cli
     ];
   };
 
