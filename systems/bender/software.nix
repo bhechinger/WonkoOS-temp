@@ -2,6 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    systemtap
+    linuxKernel.packages.linux.systemtap
   ];
 }

@@ -12,6 +12,7 @@
       ../common/development.nix
       ../common/vpns.nix
       ../common/programs.nix
+      ./programs.nix
       ../common/services.nix
       ./services.nix
       ../common/software.nix
