@@ -14,8 +14,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ../hardware/deepthought.nix
-      ../../common/users.nix
-      ./development.nix
+      ../common/users.nix
+      ../common/development.nix
       ./grafana.nix
       ./networking.nix
       ./vpns.nix

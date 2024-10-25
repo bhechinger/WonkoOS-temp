@@ -8,7 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../common/users.nix
+      ../common/users.nix
+      ../common/development.nix
     ];
 
   # Bootloader.
@@ -23,7 +24,7 @@
 
   networking = {
     hostName = "bender"; # Define your hostname.
-    wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    #wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     networkmanager.enable = true;
   };
 
@@ -54,8 +55,8 @@
         variant = "";
       };
       desktopManager.plasma5.enable = true;
-      libinput.enable = true;
     };
+    libinput.enable = true;
     displayManager.sddm.enable = true;
     printing.enable = true;
   };
@@ -88,9 +89,12 @@
   environment.variables.EDITOR = "vim";
 
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  programs = {
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    zsh.enable = true;
   };
 
   services.openssh.enable = true;
