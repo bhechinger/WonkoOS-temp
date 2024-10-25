@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../common/users.nix
       ../common/development.nix
+      ../common/programs.nix
     ];
 
   # Bootloader.

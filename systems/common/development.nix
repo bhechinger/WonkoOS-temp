@@ -1,4 +1,4 @@
-{ pkgs, pkgs-brian, ... }:
+{ pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -36,7 +36,6 @@
     action-validator
     act
     argocd
-    pkgs-brian.ops
     go
     podman
     podman-compose

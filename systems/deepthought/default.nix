@@ -16,6 +16,7 @@
       ../hardware/deepthought.nix
       ../common/users.nix
       ../common/development.nix
+      ../common/programs.nix
       ./grafana.nix
       ./networking.nix
       ./vpns.nix

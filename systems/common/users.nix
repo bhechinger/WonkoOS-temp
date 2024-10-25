@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, pkgs-brian, smc, ... }:
+{ inputs, pkgs, ... }:
 
 {
   security.pam.loginLimits = [
