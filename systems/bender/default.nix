@@ -10,7 +10,13 @@
       ./hardware-configuration.nix
       ../common/users.nix
       ../common/development.nix
+      ../common/vpns.nix
       ../common/programs.nix
+      ../common/services.nix
+      ./services.nix
+      ../common/software.nix
+      ./software.nix
+      ./networking.nix
     ];
 
   # Bootloader.
@@ -22,12 +28,6 @@
   };
 
   nix.settings.experimental-features = ["nix-command" "flakes" ];
-
-  networking = {
-    hostName = "bender"; # Define your hostname.
-    #wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-    networkmanager.enable = true;
-  };
 
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
@@ -48,21 +48,6 @@
     };
   };
 
-  services = {
-    xserver = {
-      enable = true;
-      xkb = {
-        layout = "us";
-        variant = "";
-      };
-      desktopManager.plasma5.enable = true;
-    };
-    libinput.enable = true;
-    displayManager.sddm.enable = true;
-    printing.enable = true;
-  };
-
-
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -77,28 +62,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    git
-    kitty
-  ];
-
-  environment.variables.EDITOR = "vim";
-
-  # programs.mtr.enable = true;
-  programs = {
-    gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
-    };
-    zsh.enable = true;
-  };
-
-  services.openssh.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?
 }

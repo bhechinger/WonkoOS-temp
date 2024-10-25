@@ -1,0 +1,157 @@
+{ inputs, pkgs, ... }:
+
+{
+  environment = {
+    variables.EDITOR = "nvim";
+    sessionVariables.NIXOS_OZONE_WL = "1";
+    etc = {
+      "fuse.conf" = {
+      text = ''
+# add user_allow_other for s3fs
+user_allow_other
+      '';
+      mode = "0644";
+      };
+    };
+    systemPackages = with pkgs; [
+      glances
+      zenmonitor
+      nixfmt
+      davinci-resolve
+      #ffmpeg_5-full
+      stress
+      stress-ng
+      firestarter
+      gpu-burn
+      util-linux
+      kate
+      libsForQt5.kcalc
+      pciutils
+      discord
+      slack
+      franz
+      whatsapp-for-linux
+      signal-desktop
+      #fractal
+      skypeforlinux
+      usbutils
+      lshw
+      spaceship-prompt
+      jotta-cli
+      libreoffice
+      dropbox
+      dropbox-cli
+      corectrl
+      fuse
+      fzf
+      gnupg
+      man
+      screen
+      sedutil
+      thunderbird
+      jq
+      yq
+      openssl
+      wget
+      irccloud
+      s-tui
+      nfs-utils
+      prismlauncher
+      zulu8
+      zulu17
+      zulu21
+      virt-viewer
+      virtiofsd
+      spice 
+      spice-gtk
+      spice-protocol
+      win-virtio
+      win-spice
+      adwaita-icon-theme
+      helix
+      lsof
+      wmctrl
+      #supercollider
+      #supercollider_scel
+      gnuplot
+      file
+      lutris
+      wineWow64Packages.stagingFull
+      xorg.xkill
+      virtiofsd
+      ripgrep
+      heroic
+      grapejuice
+      #iamb
+      irssi
+      nix-prefetch-git
+      nix-prefetch-github
+      gnumake
+      xsel
+      xclip
+      vimPlugins.lazy-nvim
+      unzip
+      tree-sitter
+      mailspring
+      rsync
+      #obsidian
+      packwiz
+      todoist
+      btop
+      #nheko
+      keycloak
+      weston
+      lzip
+      wofi
+      wofi-pass
+      wofi-emoji
+      waybar
+      hyprpaper
+      zfs-autobackup
+      zfstools
+      kitty
+      libheif
+      sqlite
+      moonlight-qt
+      kdePackages.krfb
+      sshfs
+      protonmail-bridge
+      telegram-desktop
+      cdrtools
+      todoist
+      todoist-electron
+      cargo-udeps
+      chromium
+      hplip
+      gscan2pdf
+      backblaze-b2
+      s3fs
+      zsh-autocomplete
+      cmctl
+      oxtools
+      gimp-with-plugins
+      xsane
+      unrar
+      protontricks
+      pr-tracker
+      nix-output-monitor
+      nix-tree
+      poppler_utils
+      xorg.libxcvt
+      nvtopPackages.full
+      smartmontools
+      p7zip
+      molly-guard
+      proton-pass
+      inputs.nix-inspect.packages.x86_64-linux.default
+      nmap
+      dig
+      gamescope
+      sshpass
+      #keybase
+      #keybase-gui
+      bitwarden-desktop
+      bitwarden-cli
+    ];
+  };
+}
