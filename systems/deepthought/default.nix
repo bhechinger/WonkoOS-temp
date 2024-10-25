@@ -14,6 +14,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ../hardware/deepthought.nix
+      ../../common/users.nix
       ./development.nix
       ./grafana.nix
       ./networking.nix
@@ -21,7 +22,6 @@
       ./vscode.nix
       ./filesystems.nix
       ./services.nix
-      ./users.nix
       ./audio.nix
       ./mailcap_hack.nix
       ./atuin.nix

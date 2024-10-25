@@ -2,7 +2,8 @@
   description = "flake for 4amlunch.net hosts";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-6_8.url = "github:NixOS/nixpkgs/96954e7ecb5dfda9d6ad7f42200d842547fb5160";
     nixpkgs-brian.url = "github:bhechinger/nixpkgs/update-stuff";
     musnix.url = "github:musnix/musnix";
@@ -11,7 +12,7 @@
     #npe.url = "./common/nvidia-gpu-exporter";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-brian, nixpkgs-6_8, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-brian, nixpkgs-6_8, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -24,10 +25,32 @@
     in
     {
       nixosConfigurations = {
+        bender = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          specialArgs = {
+            pkgs = import nixpkgs {
+              inherit system;
+              config = { allowUnfree = true; };
+            };
+
+            inherit inputs;
+          };
+
+          modules = [
+            ./systems/bender/default.nix
+          ];
+        };
+
         deepthought = nixpkgs.lib.nixosSystem {
           inherit system;
 
           specialArgs = {
+            pkgs = import nixpkgs-unstable {
+              inherit system;
+              config = { allowUnfree = true; };
+            };
+
             pkgs-brian = import nixpkgs-brian {
               system = system;
               config.allowUnfree = true;
