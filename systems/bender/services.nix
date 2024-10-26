@@ -3,7 +3,7 @@
 {
   services = {
     displayManager = {
-      defaultSession = "wayland";
+      defaultSession = "plasma";
     };
   };
 }

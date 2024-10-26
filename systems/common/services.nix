@@ -33,7 +33,6 @@
     xserver = {
       enable = true;
       xkb.layout = "us";
-      videoDrivers = ["nvidia"];
       exportConfiguration = true;
       #deviceSection = "Option \"UseEDID\" \"FALSE\"";
     };

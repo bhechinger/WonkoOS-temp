@@ -34,6 +34,11 @@
               config = { allowUnfree = true; };
             };
 
+            pkgs-unstable = import nixpkgs-unstable {
+              inherit system;
+              config = { allowUnfree = true; };
+            };
+
             inherit inputs;
           };
 

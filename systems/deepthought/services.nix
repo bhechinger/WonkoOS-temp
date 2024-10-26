@@ -17,6 +17,10 @@
       };
     };
 
+    xserver = {
+      videoDrivers = ["nvidia"];
+    };
+
     sunshine = {
       enable = true;
       autoStart = true;

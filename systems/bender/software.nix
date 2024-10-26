@@ -1,7 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, pkgs-unstable, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    linuxKernel.packages.linux.systemtap
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      gnome.adwaita-icon-theme
+    ];
+  };
 }

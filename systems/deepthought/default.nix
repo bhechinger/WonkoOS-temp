@@ -20,12 +20,15 @@
       ../common/programs.nix
       ../common/services.nix
       ./services.nix
+      ../common/software.nix
+      ./software.nix
       ./grafana.nix
       ./networking.nix
       ./vscode.nix
       ./filesystems.nix
       ./audio.nix
       ./mailcap_hack.nix
+      ../common/atuin.nix
       ./atuin.nix
       #./common/nix-alien.nix
     ];

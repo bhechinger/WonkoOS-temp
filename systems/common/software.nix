@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, pkgs-unstable, ... }:
 
 {
   environment = {
@@ -15,9 +15,7 @@ user_allow_other
     };
     systemPackages = with pkgs; [
       glances
-      zenmonitor
       nixfmt
-      davinci-resolve
       #ffmpeg_5-full
       stress
       stress-ng
@@ -41,7 +39,6 @@ user_allow_other
       libreoffice
       dropbox
       dropbox-cli
-      corectrl
       fuse
       fzf
       gnupg
@@ -67,7 +64,6 @@ user_allow_other
       spice-protocol
       win-virtio
       win-spice
-      adwaita-icon-theme
       helix
       lsof
       wmctrl
@@ -107,8 +103,6 @@ user_allow_other
       wofi-emoji
       waybar
       hyprpaper
-      zfs-autobackup
-      zfstools
       kitty
       libheif
       sqlite
@@ -138,11 +132,10 @@ user_allow_other
       nix-tree
       poppler_utils
       xorg.libxcvt
-      nvtopPackages.full
       smartmontools
       p7zip
       molly-guard
-      proton-pass
+      pkgs-unstable.proton-pass
       inputs.nix-inspect.packages.x86_64-linux.default
       nmap
       dig
