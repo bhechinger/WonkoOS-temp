@@ -25,6 +25,7 @@
       ./audio.nix
       ./mailcap_hack.nix
       ./atuin.nix
+      ./missing.nix
       #./common/nix-alien.nix
     ];
 
