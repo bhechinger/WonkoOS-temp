@@ -1,0 +1,29 @@
+{ inputs, config, lib, pkgs, ... }:
+
+{
+  security.pam.loginLimits = [
+    { domain = "wonko"; item = "nofile"; type = "hard"; value = "524288"; }
+  ];
+
+  users.users = {
+    wonko = {
+      isNormalUser = true;
+      description = "Brian Hechinger";
+      shell = pkgs.zsh;
+      extraGroups = [
+        "wheel"
+        "audio"
+        "libvirtd"
+        "users"
+        "docker"
+        "kvm"
+        "wireshark"
+        "onepassword"
+        "onepassword-cli"
+        "qemu-libvirtd"
+	"lp"
+	"scanner"
+      ];
+    };
+  };
+}
