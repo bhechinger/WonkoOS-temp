@@ -52,15 +52,15 @@
     #  defaultSession = "plasmax11";
     #};
 
-    #printing = {
-    #  enable = true;
-    #  drivers = [
-    #    pkgs.hplipWithPlugin
-    #  ];
-    #};
+    printing = {
+      enable = true;
+      drivers = [
+        pkgs.hplipWithPlugin
+      ];
+    };
 
     openssh.enable = true;
-    #rpcbind.enable = true; # needed for NFS
+    rpcbind.enable = true; # needed for NFS
 
     #hardware = {
     #  openrgb = {

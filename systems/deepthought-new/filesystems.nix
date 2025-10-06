@@ -1,10 +1,6 @@
 { inputs, config, ... }:
 
 {
-  imports = [
-    (modulesPath + "/profiles/qemu-guest.nix")
-  ];
-
   fileSystems."/" =
     { device = "zpool/root";
       fsType = "zfs";
@@ -38,58 +34,58 @@
   swapDevices = [ ];
 
   # NFS mounts
-#  systemd.mounts = let commonMountOptions = {
-#    type = "nfs";
-#    mountConfig = {
-#      Options = "noatime";
-#    };
-#  };
-#
-#  in
-#
-#  [
-#    (commonMountOptions // {
-#      what = "basket.4amlunch.net:/Brian";
-#      where = "/mnt/Brian";
-#    })
-#
-#    (commonMountOptions // {
-#      what = "basket.4amlunch.net:/NetShare";
-#      where = "/mnt/NetShare";
-#    })
-#
-#    (commonMountOptions // {
-#      what = "basket.4amlunch.net:/homes";
-#      where = "/mnt/homes";
-#    })
-#
-#    (commonMountOptions // {
-#      what = "bob.4amlunch.net:/home/docker/paperless/consume";
-#      where = "/mnt/paperless/consume";
-#    })
-#
-#    (commonMountOptions // {
-#      what = "bob.4amlunch.net:/home/docker/paperless/export";
-#      where = "/mnt/paperless/export";
-#    })
-#  ];
+  systemd.mounts = let commonMountOptions = {
+    type = "nfs";
+    mountConfig = {
+      Options = "noatime";
+    };
+  };
 
-#  systemd.automounts = let commonAutoMountOptions = {
-#    wantedBy = [ "multi-user.target" ];
-#    automountConfig = {
-#      TimeoutIdleSec = "600";
-#    };
-#  };
-#
-#  in
-#
-#  [
-#    (commonAutoMountOptions // { where = "/mnt/Brian"; })
-#    (commonAutoMountOptions // { where = "/mnt/NetShare"; })
-#    (commonAutoMountOptions // { where = "/mnt/homes"; })
-#    (commonAutoMountOptions // { where = "/mnt/paperless/consume"; })
-#    (commonAutoMountOptions // { where = "/mnt/paperless/export"; })
-#  ];
+  in
+
+  [
+    (commonMountOptions // {
+      what = "basket.4amlunch.net:/Brian";
+      where = "/mnt/Brian";
+    })
+
+    (commonMountOptions // {
+      what = "basket.4amlunch.net:/NetShare";
+      where = "/mnt/NetShare";
+    })
+
+    (commonMountOptions // {
+      what = "basket.4amlunch.net:/homes";
+      where = "/mnt/homes";
+    })
+
+    (commonMountOptions // {
+      what = "bob.4amlunch.net:/home/docker/paperless/consume";
+      where = "/mnt/paperless/consume";
+    })
+
+    (commonMountOptions // {
+      what = "bob.4amlunch.net:/home/docker/paperless/export";
+      where = "/mnt/paperless/export";
+    })
+  ];
+
+  systemd.automounts = let commonAutoMountOptions = {
+    wantedBy = [ "multi-user.target" ];
+    automountConfig = {
+      TimeoutIdleSec = "600";
+    };
+  };
+
+  in
+
+  [
+    (commonAutoMountOptions // { where = "/mnt/Brian"; })
+    (commonAutoMountOptions // { where = "/mnt/NetShare"; })
+    (commonAutoMountOptions // { where = "/mnt/homes"; })
+    (commonAutoMountOptions // { where = "/mnt/paperless/consume"; })
+    (commonAutoMountOptions // { where = "/mnt/paperless/export"; })
+  ];
 
   services = {
     zfs = {

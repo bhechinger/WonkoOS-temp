@@ -1,7 +1,4 @@
 {
-  description = "An NixOS flake template that you can adapt to your own environment";
-
-  # Flake inputs
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0"; # Stable Nixpkgs
     determinate = {
@@ -10,12 +7,11 @@
     };
   };
 
-  # Flake outputs
   outputs =
     { self, ... }@inputs:
     {
       # A minimal (but updatable!) NixOS configuration output by this flake
-      nixosConfigurations.my-system = inputs.nixpkgs.lib.nixosSystem {
+      nixosConfigurations.deepthought-new = inputs.nixpkgs.lib.nixosSystem {
         # Change this if you're building for a system type other than x86 AMD Linux
         system = "x86_64-linux";
 
@@ -28,17 +24,11 @@
           ./networking.nix
           ./users.nix
           ./filesystems.nix
-          ./default.nix
+          ./software.nix
           ./services.nix
-
-          # This module provides a minimum viable NixOS configuration
-          (
-            { config, lib, ... }:
-            {
-              boot.loader.systemd-boot.enable = true; # UEFI systems only
-              system.stateVersion = "25.05";
-            }
-          )
+	  ./system.nix
+	  ./virtualization.nix
+	  ./hardware.nix
         ];
 
         specialArgs = {

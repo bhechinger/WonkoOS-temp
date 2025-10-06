@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   networking = {
@@ -34,8 +34,9 @@
     #};
     #defaultGateway = "10.42.0.1";
     #nameservers = [ "10.42.0.2 10.42.0.12" ];
+    #192.168.99.30 basket.4amlunch.net basket
     extraHosts = ''
-      192.168.99.30 basket.4amlunch.net basket
+      10.42.0.30 basket.4amlunch.net basket
       192.168.49.2 bahmni.k8s payments-bahmni.k8s
     '';
     firewall.enable = false;
