@@ -27,14 +27,8 @@
         wonko = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-	    #{
-	    #  wayland.windowManager.hyprland = {
-	    #    enable = true;
-	    #	package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-            #        portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-	    #      };
-	    #    }
 	    ./home.nix
+	    ./zsh.nix
           ];
         };
       };

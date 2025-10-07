@@ -4,7 +4,7 @@ let
 in {
   home = {
     packages = with pkgs; [
-      hello
+      zellij
     ];
 
     inherit username;

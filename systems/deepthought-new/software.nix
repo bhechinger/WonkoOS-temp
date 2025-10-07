@@ -243,13 +243,13 @@
 
     zsh = {
       enable = true;
-      syntaxHighlighting.enable = true;
-      autosuggestions.enable = true;
-      ohMyZsh = {
-        enable = true;
-        plugins = [ "git" ];
-      };
-      #enableCompletetion = false; # so we can use zsh-autocomplete
+    #  syntaxHighlighting.enable = true;
+    #  autosuggestions.enable = true;
+    #  ohMyZsh = {
+    #    enable = true;
+    #    plugins = [ "git" ];
+    #  };
+    #  #enableCompletetion = false; # so we can use zsh-autocomplete
     };
 
     nh = {
