@@ -3,6 +3,11 @@
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0"; # Stable Nixpkgs
     nixpkgs-unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1"; # Unstable Nixpkgs
 
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }
+
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3"; # Determinate 3.*
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,14 +24,15 @@
     };
   };
 
-  outputs = { self, ... }@inputs:
+  outputs = { self, disko, ... }@inputs:
     {
       nixosConfigurations.deepthought-new = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
 
         modules = [
           inputs.determinate.nixosModules.default
-	  inputs.musnix.nixosModules.musnix
+          inputs.musnix.nixosModules.musnix
+          disko.nixosModules.disko
 
           ../hardware/deepthought-new.nix
           ./networking.nix
@@ -34,13 +40,13 @@
           ./filesystems.nix
           ./software.nix
           ./services.nix
-	  ./system.nix
-	  ./virtualization.nix
-	  ./hardware.nix
-	  ./desktop.nix
-	  ./postgresql.nix
-	  ./atuin.nix
-	  ./audio.nix
+          ./system.nix
+          ./virtualization.nix
+          ./hardware.nix
+          ./desktop.nix
+          ./postgresql.nix
+          ./atuin.nix
+          ./audio.nix
         ];
 
         specialArgs = {
