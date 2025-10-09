@@ -27,6 +27,7 @@
           };
         };
       };
+    };
     zpool = {
       zroot = {
         type = "zpool";
