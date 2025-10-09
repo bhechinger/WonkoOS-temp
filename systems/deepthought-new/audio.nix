@@ -65,12 +65,12 @@
     audacious
     qpwgraph
     show-midi
-    mopidy
-    mopidy-bandcamp
-    mopidy-iris
-    mopidy-notify
-    mopidy-spotify
-    mopidy-soundcloud
+    #mopidy
+    #mopidy-bandcamp
+    #mopidy-iris
+    #mopidy-notify
+    #mopidy-spotify
+    #mopidy-soundcloud
     lmms
     lsp-plugins
   ];
