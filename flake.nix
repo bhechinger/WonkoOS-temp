@@ -36,7 +36,10 @@
       nixosConfigurations = {
         deepthought = nixpkgs.lib.nixosSystem {
           inherit system;
-          inherit inputs;
+
+          specialArgs = {
+            inherit inputs;
+          };
 
           modules = [
             ./systems/deepthought-new/default.nix
