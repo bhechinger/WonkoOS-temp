@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, pkgs-brian, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   hardware.pulseaudio.enable = false;
@@ -25,11 +25,11 @@
     pipewire = {
       enable = true;
       audio.enable = true;
-      wireplumber = {
+      wireplumber.enable = true;
+      alsa = {
         enable = true;
+        support32Bit = true;
       };
-      alsa.enable = true;
-      alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
       socketActivation = true;
@@ -54,14 +54,13 @@
   environment.systemPackages = with pkgs; [
     ffado
     alsa-utils
-    pkgs-brian.ardour
+    ardour
     spotify
     alsa-lib
     libjack2
     jack2
     qjackctl
     pavucontrol
-    jack2Full
     jack_capture
     pulseaudioFull
     audacious

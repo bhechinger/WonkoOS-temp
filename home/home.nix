@@ -3,10 +3,6 @@ let
   username = "wonko";
 in {
   home = {
-    packages = with pkgs; [
-      zellij
-    ];
-
     inherit username;
     homeDirectory = "/home/${username}";
 

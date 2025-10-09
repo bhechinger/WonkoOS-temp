@@ -29,6 +29,11 @@
           modules = [
 	    ./home.nix
 	    ./zsh.nix
+	    ./atuin.nix
+	    ./audio.nix
+	    ./development.nix
+	    ./kubernetes.nix
+	    ./software.nix
           ];
         };
       };

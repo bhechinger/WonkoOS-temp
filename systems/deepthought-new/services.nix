@@ -11,10 +11,6 @@
       '';
     };
 
-    postgresql = {
-      enable = true;
-    };
-
     #zerotierone = {
     #  enable = true;
     #  joinNetworks = [

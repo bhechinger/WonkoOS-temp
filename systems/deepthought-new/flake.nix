@@ -12,6 +12,11 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    musnix = {
+      url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, ... }@inputs:
@@ -21,6 +26,7 @@
 
         modules = [
           inputs.determinate.nixosModules.default
+	  inputs.musnix.nixosModules.musnix
 
           ../hardware/deepthought-new.nix
           ./networking.nix
@@ -32,6 +38,9 @@
 	  ./virtualization.nix
 	  ./hardware.nix
 	  ./desktop.nix
+	  ./postgresql.nix
+	  ./atuin.nix
+	  ./audio.nix
         ];
 
         specialArgs = {
