@@ -4,8 +4,10 @@
   imports = [
     inputs.determinate.nixosModules.default
     inputs.musnix.nixosModules.musnix
+    inputs.disko.nixosModules.disko
 
     ../hardware/deepthought-new.nix
+    ./zfs.nix
     ./networking.nix
     ./users.nix
     ./filesystems.nix
