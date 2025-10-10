@@ -47,6 +47,7 @@
           };
 
           modules = [
+            inputs.disko.nixosModules.disko
             ./systems/deepthought-new/default.nix
           ];
         };
