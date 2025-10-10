@@ -1,5 +1,3 @@
-{}:
-
 {
   disko.devices = {
     disk = {
