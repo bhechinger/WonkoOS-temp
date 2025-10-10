@@ -31,15 +31,15 @@
       system = "x86_64-linux";
 
       pkgs = import nixpkgs {
-        inherit system;
-        config = { allowUnfree = true; };
+       inherit system;
+       config = { allowUnfree = true; };
       };
 
       lib = nixpkgs.lib;
     in
     {
       nixosConfigurations = {
-        deepthought = nixpkgs.lib.nixosSystem {
+        deepthought = lib.nixosSystem {
           inherit system;
 
           specialArgs = {
