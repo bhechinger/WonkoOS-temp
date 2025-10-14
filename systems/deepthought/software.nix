@@ -21,7 +21,7 @@
       #lapce
       #lime3ds
       #mindustry
-      #nix-top
+      nix-top
       #nix-web
       #nixos-shell
       nvme-cli
@@ -86,7 +86,7 @@
       #zulu21
       #virt-viewer
       #virtiofsd
-      #spice 
+      #spice
       #spice-gtk
       #spice-protocol
       #win-virtio
