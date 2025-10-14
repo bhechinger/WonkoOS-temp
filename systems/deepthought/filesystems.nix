@@ -1,32 +1,36 @@
 { inputs, config, ... }:
 
 {
-  fileSystems."/" =
-    { device = "rpool/root";
-      fsType = "zfs";
-    };
+  # fileSystems."/" =
+  #   { device = "zpool/root";
+  #     fsType = "zfs";
+  #     options = [ "zfsutil" ];
+  #   };
 
-  fileSystems."/nix" =
-    { device = "rpool/nix";
-      fsType = "zfs";
-    };
+  # fileSystems."/nix" =
+  #   { device = "zpool/nix";
+  #     fsType = "zfs";
+  #     options = [ "zfsutil" ];
+  #   };
 
-  fileSystems."/var" =
-    { device = "rpool/var";
-      fsType = "zfs";
-    };
+  # fileSystems."/var" =
+  #   { device = "zpool/var";
+  #     fsType = "zfs";
+  #     options = [ "zfsutil" ];
+  #   };
 
-  fileSystems."/home" =
-    { device = "zpool/home";
-      fsType = "zfs";
-    };
+  # fileSystems."/home" =
+  #   { device = "zpool/home";
+  #     fsType = "zfs";
+  #     options = [ "zfsutil" ];
+  #   };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/FC6B-6502";
-      fsType = "vfat";
-    };
+  # fileSystems."/boot" =
+  #   { device = "/dev/disk/by-uuid/81B5-7839";
+  #     fsType = "vfat";
+  #     options = [ "fmask=0022" "dmask=0022" ];
+  #   };
 
-  #swapDevices = [ "/dev/zvol/rpool/swap1" ];
   swapDevices = [ ];
 
   # NFS mounts

@@ -47,7 +47,7 @@
           };
 
           modules = [
-            ./systems/deepthought-new/default.nix
+            ./systems/deepthought/default.nix
           ];
         };
       };

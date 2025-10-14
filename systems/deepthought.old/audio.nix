@@ -1,6 +1,7 @@
-{ inputs, config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, pkgs-brian, ... }:
 
 {
+  hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
   musnix = {
@@ -24,11 +25,11 @@
     pipewire = {
       enable = true;
       audio.enable = true;
-      wireplumber.enable = true;
-      alsa = {
+      wireplumber = {
         enable = true;
-        support32Bit = true;
       };
+      alsa.enable = true;
+      alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
       socketActivation = true;
@@ -53,24 +54,25 @@
   environment.systemPackages = with pkgs; [
     ffado
     alsa-utils
-    ardour
+    pkgs-brian.ardour
     spotify
     alsa-lib
     libjack2
     jack2
     qjackctl
     pavucontrol
+    jack2Full
     jack_capture
     pulseaudioFull
     audacious
     qpwgraph
     show-midi
-    #mopidy
-    #mopidy-bandcamp
-    #mopidy-iris
-    #mopidy-notify
-    #mopidy-spotify
-    #mopidy-soundcloud
+    mopidy
+    mopidy-bandcamp
+    mopidy-iris
+    mopidy-notify
+    mopidy-spotify
+    mopidy-soundcloud
     lmms
     lsp-plugins
   ];
