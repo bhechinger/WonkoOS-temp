@@ -24,6 +24,7 @@
     kernelParams = [ "mitigations=off" "preempt=full" "nohz_full=all" ];
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     zfs = {
       extraPools = [ "zpool" ];
       devNodes = "/dev/disk/by-partuuid";
@@ -82,7 +83,10 @@
 
   environment = {
     variables.EDITOR = "nvim";
-    sessionVariables.NIXOS_OZONE_WL = "1";
+    sessionVariables = {
+      #WLR_NO_HARDWARE_CURSORS = "1";
+      NIXOS_OZONE_WL = "1";
+    };
     etc = {
       "fuse.conf" = {
       text = ''

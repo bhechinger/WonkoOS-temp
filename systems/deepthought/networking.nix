@@ -8,10 +8,10 @@
     useDHCP = false;
     bridges = {
       "trunk" = {
-        interfaces = [ "enp5s0" ];
+        interfaces = [ "enp6s0" ];
       };
       "storage" = {
-        interfaces = [ "enp6s0" ];
+        interfaces = [ "enp5s0" ];
       };
     };
     vlans = {
