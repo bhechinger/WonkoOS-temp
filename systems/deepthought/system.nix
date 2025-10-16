@@ -5,11 +5,6 @@
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
-  #nix.gc = {
-  #  automatic = true;
-  #  options = "--delete-older-than 7d";
-  #};
-
   boot = {
     loader = {
       grub.memtest86.enable = true;
@@ -24,9 +19,9 @@
     kernelParams = [ "mitigations=off" "preempt=full" "nohz_full=all" ];
     kernelModules = [ "kvm-amd" ];
     extraModulePackages = [ ];
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
+    # kernelPackages = pkgs.linuxPackages_xanmod_latest;
     zfs = {
-      extraPools = [ "zpool" ];
+      extraPools = [ "zroot" ];
       devNodes = "/dev/disk/by-partuuid";
     };
   };
