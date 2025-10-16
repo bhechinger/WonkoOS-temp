@@ -1,4 +1,4 @@
-{ inputs, config, lib, pkgs, pkgs-brian, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 {
   services = {

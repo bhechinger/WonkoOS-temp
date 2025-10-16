@@ -20,6 +20,6 @@
     ./postgresql.nix
     ./atuin.nix
     ./audio.nix
-    ./development.nix
+    ./vpns.nix
   ];
 }

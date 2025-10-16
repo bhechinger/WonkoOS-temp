@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0"; # Stable Nixpkgs
+
     determinate = {
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3"; # Determinate 3.*
       inputs.nixpkgs.follows = "nixpkgs";
@@ -27,13 +28,13 @@
         wonko = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-	    ./home.nix
-	    ./zsh.nix
-	    ./atuin.nix
-	    ./audio.nix
-	    ./development.nix
-	    ./kubernetes.nix
-	    ./software.nix
+            ./home.nix
+            ./zsh.nix
+            ./atuin.nix
+            ./audio.nix
+            ./development.nix
+            ./kubernetes.nix
+            ./software.nix
           ];
         };
       };
