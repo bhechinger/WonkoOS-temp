@@ -1,9 +1,13 @@
 {
+  device ? throw "Set this to your disk device, e.g. /dev/sda",
+  ...
+}:
+{
   disko.devices = {
     disk = {
       os = {
+        inherit device;
         type = "disk";
-        device = "/dev/disk/by-id/some-disk-id";
         content = {
           type = "gpt";
           partitions = {
