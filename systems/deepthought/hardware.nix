@@ -7,7 +7,6 @@
       #driSupport = true;
       #driSupport32Bit = true;
     };
-    opengl.enable = true;
 
     nvidia = {
       modesetting.enable = true;

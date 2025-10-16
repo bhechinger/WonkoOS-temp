@@ -35,6 +35,7 @@
             ./development.nix
             ./kubernetes.nix
             ./software.nix
+            ./desktop.nix
           ];
         };
       };
