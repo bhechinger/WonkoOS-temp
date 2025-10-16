@@ -36,6 +36,7 @@
       };
 
       lib = nixpkgs.lib;
+      device = "/dev/vda";
     in
     {
       nixosConfigurations = {
@@ -44,11 +45,11 @@
 
           specialArgs = {
             inherit inputs;
-            inherit pkgs;
+            inherit device;
           };
 
           modules = [
-            (import ./systems/deepthought/default.nix { device = "/dev/vda"; })
+            ./systems/deepthought/default.nix
           ];
         };
       };
