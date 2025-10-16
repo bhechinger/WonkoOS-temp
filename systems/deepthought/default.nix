@@ -20,5 +20,6 @@
     ./postgresql.nix
     ./atuin.nix
     ./audio.nix
+    ./development.nix
   ];
 }

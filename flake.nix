@@ -39,7 +39,7 @@
     in
     {
       nixosConfigurations = {
-        deepthought = lib.nixosSystem {
+        deepthought-vm = lib.nixosSystem {
           inherit system;
 
           specialArgs = {
