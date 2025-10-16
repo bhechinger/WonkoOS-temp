@@ -47,7 +47,7 @@
           };
 
           modules = [
-            ./systems/deepthought/default.nix
+            (import ./systems/deepthought/default.nix { device = "/dev/vda"; })
           ];
         };
       };
