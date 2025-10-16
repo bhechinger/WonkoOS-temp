@@ -36,7 +36,6 @@
       };
 
       lib = nixpkgs.lib;
-      device = "/dev/vda";
     in
     {
       nixosConfigurations = {
@@ -45,7 +44,7 @@
 
           specialArgs = {
             inherit inputs;
-            inherit device;
+            device = "/dev/vda";
           };
 
           modules = [
