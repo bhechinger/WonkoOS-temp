@@ -13,7 +13,6 @@
     #(google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
     podman
     podman-compose
-    #libxslt
     graphviz
     grpcurl
     act
