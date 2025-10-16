@@ -44,6 +44,7 @@
 
           specialArgs = {
             inherit inputs;
+            inherit pkgs;
           };
 
           modules = [
